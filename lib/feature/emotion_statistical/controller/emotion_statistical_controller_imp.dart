@@ -13,6 +13,7 @@ class EmotionStatisticalControllerImp extends EmotionStatisticalController {
 
   @override
   Future<void> onReloadErrorOccured() async {
+    super.onReloadErrorOccured();
     await _getStatistical();
   }
 

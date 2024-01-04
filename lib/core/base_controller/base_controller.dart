@@ -35,7 +35,7 @@ class BaseGetxController extends GetxController {
   RxBool isIssueSuccess = false.obs;
 
   // RxBool isDarkMode = RxBool(APP_DATA.read(AppConst.keyIsDarkTheme) ?? false);
-
+  @mustCallSuper
   Future<void> onReloadErrorOccured() async {
     isError.value = false;
   }
