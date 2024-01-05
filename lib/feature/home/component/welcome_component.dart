@@ -26,7 +26,8 @@ class WelcomeComponent extends StatelessWidget {
                   Get.offAllNamed(AppRoutes.loginPage);
                 },
                 child: const CircleAvatarBuilder(
-                  backgroundColor: Colors.red,
+                  backgroundColor: Colors.transparent,
+                  child: Icon(Icons.output),
                 ),
               )
             ],

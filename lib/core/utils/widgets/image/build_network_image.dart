@@ -60,7 +60,7 @@ class NetworkImageWidget extends StatelessWidget {
                 )),
               );
             },
-        useOldImageOnUrlChange: true,
+        useOldImageOnUrlChange: false,
         imageBuilder: widgetImageBuilder ??
             (context, imageProvider) {
               return CardBuilder(

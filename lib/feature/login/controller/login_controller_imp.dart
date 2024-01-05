@@ -15,8 +15,8 @@ class LoginControllerImp extends LoginController with AnimationLogin {
 
   @override
   void onClose() {
-    super.onClose();
     closeAnimation();
+    super.onClose();
   }
 
   void _initController() {
@@ -43,10 +43,11 @@ class LoginControllerImp extends LoginController with AnimationLogin {
   Future<void> _login() async {
     loginRequest = loginRequest.copyWith(
         userName: usernameController.text, password: passwordController.text);
+    await CookiesSingleton()
+        .createCookiesForUser(userName: usernameController.text);
     await loginRepository.login(loginRequest).then((value) async {
       if (value != null) {
         await _saveAccountToLocal(value);
-        await CookiesSingleton().createCookiesForUser();
         _gotoHomePage();
       }
     });

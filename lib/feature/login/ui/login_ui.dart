@@ -12,7 +12,7 @@ class LoginPage extends BaseGetWidget<LoginController> {
   @override
   Widget buildWidgets(BuildContext context) {
     final keyboardHeight = MediaQuery.of(context).viewInsets.bottom;
-    return PageScaffold( 
+    return PageScaffold(
       showAppBar: false,
       child: Stack(
         fit: StackFit.expand,
@@ -35,8 +35,8 @@ class LoginPage extends BaseGetWidget<LoginController> {
           ).paddingOnly(bottom: MediaQuery.of(context).viewInsets.bottom),
           // .marginOnly(top: 150 - keyboardHeight / 100, bottom: keyboardHeight)
           Positioned.fill(
-            child: FadeTransition(
-              opacity: controller.opacityAnimation,
+            child: SlideTransition(
+              position: controller.formPositionAnimation,
               child: CustomPaint(
                 painter: CustomBackground(
                   keyboardHeight / 2,

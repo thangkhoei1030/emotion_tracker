@@ -32,8 +32,19 @@ class EmotionOfDay extends GetView<EmotionStatisticalController> {
                     widthImage: 50,
                   )
                 else
-                  const CircleAvatarBuilder(
-                    backgroundColor: Colors.red,
+                  Container(
+                    height: 50,
+                    width: 50,
+                    decoration: BoxDecoration(
+                      border: Border.all(
+                          color: Colors.black,
+                          style: BorderStyle.solid,
+                          width: 0.2,
+                          strokeAlign: BorderSide.strokeAlignOutside),
+                      borderRadius:
+                          BorderRadius.circular(AppDimens.radiusDefault),
+                    ),
+                    child: const Icon(Icons.add),
                   ),
                 TextBuild(
                   title: emotionDate.day.toString(),

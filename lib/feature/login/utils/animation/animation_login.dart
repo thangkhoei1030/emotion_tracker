@@ -16,11 +16,11 @@ mixin AnimationLogin on LoginController {
   late final Animation<Offset> formPositionAnimation;
 
   void initialAnimation() {
-    showUserInterfaceAnimationController =
-        AnimationController(vsync: this, duration: const Duration(seconds: 1));
+    showUserInterfaceAnimationController = AnimationController(
+        vsync: this, duration: const Duration(milliseconds: 800));
 
-    animationController =
-        AnimationController(vsync: this, duration: const Duration(seconds: 1));
+    animationController = AnimationController(
+        vsync: this, duration: const Duration(milliseconds: 800));
 
     zoomAnimation = Tween<double>(begin: 2, end: 1).animate(
       CurvedAnimation(
@@ -30,7 +30,7 @@ mixin AnimationLogin on LoginController {
     );
 
     formPositionAnimation = Tween<Offset>(
-      begin: const Offset(2, 0),
+      begin: const Offset(0, 1),
       end: const Offset(0, 0),
     ).animate(
       CurvedAnimation(
@@ -49,7 +49,16 @@ mixin AnimationLogin on LoginController {
     );
     opacityAnimation = Tween<double>(begin: 0, end: 1)
         .animate(showUserInterfaceAnimationController);
+    _addListennerAnimation();
+  }
+
+  void _addListennerAnimation() {
     animationController.addStatusListener((status) {
+      if (status == AnimationStatus.completed) {
+        animationController.stop();
+      }
+    });
+    showUserInterfaceAnimationController.addStatusListener((status) {
       if (status == AnimationStatus.completed) {
         animationController.stop();
       }
@@ -57,9 +66,9 @@ mixin AnimationLogin on LoginController {
   }
 
   Future<void> loadingAnimation() async {
-    await Future.delayed(const Duration(seconds: 3));
+    await Future.delayed(const Duration(seconds: 2));
     animationController.forward();
-    await Future.delayed(const Duration(microseconds: 500));
+
     showUserInterfaceAnimationController.forward();
   }
 

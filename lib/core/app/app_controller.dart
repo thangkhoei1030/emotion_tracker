@@ -29,6 +29,9 @@ class AppController extends GetxController {
       Get.put(BaseGetxController(), permanent: true);
       if (APP_DATA.get(AppConst.keyUserName) != null) {
         await _login();
+      } else {
+        FlutterNativeSplash.remove();
+        Get.toNamed(AppRoutes.loginPage);
       }
     });
 

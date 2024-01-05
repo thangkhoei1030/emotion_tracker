@@ -1,5 +1,5 @@
 class ApiUrl {
-  static const String urlBase = "http://quiz.web4s.com.vn/";
+  static const String urlBase = "https://quiz.web4s.com.vn/";
   //login
   static const String urlLogin = "api/member/login";
   //emotion_tracker

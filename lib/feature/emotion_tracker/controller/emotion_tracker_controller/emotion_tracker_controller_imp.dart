@@ -51,13 +51,12 @@ class EmotionTrackerControllerImp extends EmotionTrackerController {
       questionId: questionForAnswer.questionId,
       quizId: quizResponse.id,
     );
-    quizResponse.quizsDetail[index] = quizResponse.quizsDetail[index].copyWith(
-      isAnswerDone: true,
-      answer: currentEmotion.value.ceil() + 1,
-    );
+
     currentEmotion.value = 0;
     try {
-      await emotionTrackerRepository.sendAnswer(answerRequest).then((value) {});
+      await emotionTrackerRepository.sendAnswer(answerRequest).then((value) {
+        print("done");
+      });
     } finally {
       print(quizResponse.quizsDetail.map((e) => e.answer));
     }
@@ -70,20 +69,25 @@ class EmotionTrackerControllerImp extends EmotionTrackerController {
 
   @override
   void nextQuestionOrSumary(int index) {
-    if (index != totalQuestion.value - 1) {
-      try {
-        onQuestionChange(index);
-      } finally {
+    quizResponse.quizsDetail[index] = quizResponse.quizsDetail[index].copyWith(
+      isAnswerDone: true,
+      answer: currentEmotion.value.ceil() + 1,
+    );
+    try {
+      onQuestionChange(index);
+    } finally {
+      if (index != totalQuestion.value - 1) {
         currentQuestionIndex.value++;
-        currentEmotion.value = (quizResponse
-                    .quizsDetail[currentQuestionIndex.value].answer
-                    ?.toDouble() ??
-                1) -
-            1;
       }
-
-      return;
+      currentEmotion.value = (quizResponse
+                  .quizsDetail[currentQuestionIndex.value].answer
+                  ?.toDouble() ??
+              1) -
+          1;
     }
-    Get.offAndToNamed(AppRoutes.congratulationQuiz);
+
+    if (index == totalQuestion.value - 1) {
+      Get.offAndToNamed(AppRoutes.congratulationQuiz);
+    }
   }
 }

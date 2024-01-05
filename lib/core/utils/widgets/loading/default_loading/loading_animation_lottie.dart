@@ -13,6 +13,7 @@ class LoadingAnimationLottie extends StatefulWidget {
 
   final String description;
 
+
   @override
   State<LoadingAnimationLottie> createState() => _LoadingAnimationLottieState();
 }
@@ -28,6 +29,11 @@ class _LoadingAnimationLottieState extends State<LoadingAnimationLottie>
   @override
   void initState() {
     super.initState();
+
+    _initialAnimateLoading();
+  }
+
+  void _initialAnimateLoading() {
     animationController = AnimationController(
         vsync: this, duration: const Duration(milliseconds: 500));
     opacityAnimation = Tween(begin: 0.0, end: 1.0).animate(
@@ -54,8 +60,8 @@ class _LoadingAnimationLottieState extends State<LoadingAnimationLottie>
 
   @override
   void dispose() {
-    super.dispose();
     animationController.dispose();
+    super.dispose();
   }
 
   @override
