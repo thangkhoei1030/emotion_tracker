@@ -1,5 +1,6 @@
 import 'package:emotion_tracker/core/src_core.dart';
 import 'package:emotion_tracker/feature/src_feature.dart';
+import 'package:emotion_tracker/pages/routes.dart';
 import 'package:flutter/material.dart';
 import 'dart:math' as math;
 
@@ -21,10 +22,7 @@ class CongratulationsPage extends BaseGetWidget<CongratulationController> {
         linearGradient: LinearGradient(
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
-            colors: [
-              Colors.lightBlue.withOpacity(0.5),
-              Colors.lightBlue,
-            ]),
+            colors: AppColors.mainBackGroundColor),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -43,6 +41,7 @@ class CongratulationsPage extends BaseGetWidget<CongratulationController> {
                 )
               ],
             ),
+            UtilWidget.sizedBoxPaddingHuge,
             UtilWidget.buildErrorOccurred(
               controller,
               isPage: false,
@@ -57,11 +56,13 @@ class CongratulationsPage extends BaseGetWidget<CongratulationController> {
             ),
             UtilWidget.sizedBoxPaddingHuge,
             BaseButton(
-                backgroundColor: Colors.white,
-                function: () {
-                  Get.back();
-                },
-                titleButton: 'Thoát')
+              width: Get.width / 2,
+              backgroundColor: Colors.white,
+              function: () {
+                Get.until((route) => Get.currentRoute == AppRoutes.homePage);
+              },
+              titleButton: 'Thoát',
+            )
           ],
         ),
       ),
@@ -108,16 +109,22 @@ class EmotionCompleteInfo extends GetView<CongratulationController> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                const TextBuild(title: "Tích cực"),
+                const TextBuild(
+                  title: "Tích cực",
+                  textColor: Colors.white,
+                ),
                 TextBuild(
+                    textColor: Colors.white,
                     title:
                         "${(controller.percentOfPositive * 10).floor()}  / 10")
               ],
             ),
             UtilWidget.sizedBoxPadding,
             BuildSliderPercent(
-                percent: controller.percentOfPositive,
-                mainColor: Colors.yellow.shade300)
+              percent: controller.percentOfPositive,
+              mainColor: HexColor.fromHex("F1CC53")!,
+              thumbColor: HexColor.fromHex("FFF1C2"),
+            )
           ],
         ),
         UtilWidget.sizedBoxPadding,
@@ -126,15 +133,22 @@ class EmotionCompleteInfo extends GetView<CongratulationController> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                const TextBuild(title: "Tiêu cực"),
+                const TextBuild(
+                  title: "Tiêu cực",
+                  textColor: Colors.white,
+                ),
                 TextBuild(
-                    title:
-                        "${(controller.percentOfNegative * 10).floor()}  / 10")
+                  textColor: Colors.white,
+                  title: "${(controller.percentOfNegative * 10).floor()}  / 10",
+                )
               ],
             ),
             UtilWidget.sizedBoxPadding,
             BuildSliderPercent(
-                percent: controller.percentOfNegative, mainColor: Colors.red)
+              thumbColor: HexColor.fromHex("FFD4DB"),
+              percent: controller.percentOfNegative,
+              mainColor: HexColor.fromHex("FB7185")!,
+            )
           ],
         ),
       ],

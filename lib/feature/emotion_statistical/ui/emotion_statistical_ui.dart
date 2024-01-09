@@ -1,4 +1,5 @@
 import 'package:emotion_tracker/core/src_core.dart';
+import 'package:emotion_tracker/feature/emotion_statistical/values/strings.dart';
 import 'package:emotion_tracker/feature/src_feature.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -19,19 +20,24 @@ class EmotionStatisticalPage
       onReload: controller.onReloadErrorOccured,
       child: PageScaffold(
         showAppBar: false,
+        backgroundColor: Colors.transparent,
         child: Obx(
           () => controller.isShowLoading.value
               ? const LoadingAnimationLottie(
                   animationDialogType: AnimationDialogType.quizLoading,
-                  description:
-                      "Chúng tôi đang thống kê lại cảm xúc của bạn\ntrong 7 ngày vừa qua",
+                  description: EmotionStatisticalStr.descriptionLoading,
                 )
               : Stack(
                   children: [
                     Positioned.fill(
                       child: Container(
                         height: Get.height,
-                        color: Colors.blue,
+                        decoration: BoxDecoration(
+                            gradient: LinearGradient(
+                          begin: Alignment.topLeft,
+                          end: Alignment.bottomRight,
+                          colors: AppColors.emotionStatisticalBackgroundColor,
+                        )),
                       ),
                     ),
                     Positioned.fill(
@@ -54,45 +60,68 @@ class EmotionStatisticalPage
                         ),
                       ),
                     ),
-                    SingleChildScrollView(
-                      controller: ScrollController(keepScrollOffset: true),
+                    CustomScrollView(
                       physics: const BouncingScrollPhysics(),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          CardBuilder(
-                            width: 50,
-                            radiusModel:
-                                const RadiusModel(radiusAll: AppDimens.radius8),
-                            onTap: Get.back,
-                            elevation: 8,
-                            paddingModel: const PaddingModel(
-                                paddingAll: AppDimens.paddingSmall),
-                            backgroundColor: Colors.white.withOpacity(0.4),
-                            child: const Icon(
-                              Icons.arrow_back,
-                              color: Colors.white,
-                            ),
-                          ).paddingSymmetric(
-                            horizontal: AppDimens.paddingSmallest,
-                            vertical: AppDimens.paddingMedium,
-                          ),
-                          UtilWidget.sizedBoxPaddingHuge,
-                          const EmotionOfDay(),
-                          UtilWidget.sizedBoxPaddingHuge,
+                      slivers: [
+                        const SliverAppBar(
+                          centerTitle: true,
+                          pinned: true,
+                          automaticallyImplyLeading: false,
+                          toolbarHeight: 75,
+                          flexibleSpace: BuildAppBarEmotionStatistical(),
+                        ),
+                        SliverList(
+                            delegate: SliverChildListDelegate([
                           Column(
-                            children: const [
-                              EmotionStatistical(),
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              // const BuildAppBarEmotionStatistical(),
+                              // UtilWidget.sizedBoxPaddingHuge,
                               UtilWidget.sizedBoxPaddingHuge,
-                              MusicRecommended(),
+                              const EmotionOfDay(),
                               UtilWidget.sizedBoxPaddingHuge,
-                              MusicRecommended(),
-                              UtilWidget.sizedBoxPaddingHuge,
-                              MusicRecommended(),
+                              Column(
+                                children: const [
+                                  EmotionStatistical(),
+                                  UtilWidget.sizedBoxPaddingHuge,
+                                  MusicRecommended(),
+                                  UtilWidget.sizedBoxPaddingHuge,
+                                  MusicRecommended(),
+                                  UtilWidget.sizedBoxPaddingHuge,
+                                  MusicRecommended(),
+                                ],
+                              ).paddingSymmetric(
+                                  horizontal: AppDimens.paddingHuge),
                             ],
-                          ).paddingSymmetric(horizontal: AppDimens.paddingHuge)
-                        ],
-                      ),
+                          ),
+                        ]))
+                      ],
+                      // body: SingleChildScrollView(
+                      //   physics: const BouncingScrollPhysics(),
+                      //   child: Column(
+                      //     crossAxisAlignment: CrossAxisAlignment.start,
+                      //     children: [
+                      //       // const BuildAppBarEmotionStatistical(),
+                      //       // UtilWidget.sizedBoxPaddingHuge,
+                      //       UtilWidget.sizedBoxPaddingHuge,
+                      //       UtilWidget.sizedBoxPaddingHuge,
+                      //       const EmotionOfDay(),
+                      //       UtilWidget.sizedBoxPaddingHuge,
+                      //       Column(
+                      //         children: const [
+                      //           EmotionStatistical(),
+                      //           UtilWidget.sizedBoxPaddingHuge,
+                      //           MusicRecommended(),
+                      //           UtilWidget.sizedBoxPaddingHuge,
+                      //           MusicRecommended(),
+                      //           UtilWidget.sizedBoxPaddingHuge,
+                      //           MusicRecommended(),
+                      //         ],
+                      //       ).paddingSymmetric(
+                      //           horizontal: AppDimens.paddingHuge),
+                      //     ],
+                      //   ),
+                      // ),
                     )
                   ],
                 ),

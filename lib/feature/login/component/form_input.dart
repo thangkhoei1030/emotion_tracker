@@ -13,7 +13,6 @@ class FormSignInWidget extends GetView<LoginController> {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        controller.teddyController.coverEyes(false);
         FocusManager.instance.primaryFocus?.unfocus();
       },
       child: CardBuilder(
@@ -29,24 +28,23 @@ class FormSignInWidget extends GetView<LoginController> {
               UtilWidget.sizedBoxPaddingHuge,
               if (MediaQuery.of(context).viewInsets.bottom == 0) ...[
                 const TextBuild(
-                  title: "Hello",
+                  title: SignInStr.hello,
                   isBoldText: true,
                   fontSize: AppDimens.sizeTextVeryLarge,
                   textColor: Colors.white,
                 ),
                 const TextBuild(
-                  title:
-                      "Chào mừng bạn đã quay trở lại, hãy đăng nhập và cho chúng tôi biết hôm nay của bạn thế nào nhé!",
+                  title: SignInStr.descriptions,
                   textAlign: TextAlign.start,
                   isBoldText: true,
                   textColor: Colors.white,
                 ),
               ],
               UtilWidget.sizedBoxPaddingHuge,
-
               Obx(
-                () => TrackingTextInput(
+                () => BuildInputTextWithLabel(
                   label: SignInStr.account,
+                  labelColor: Colors.white,
                   inputTextModel: InputTextModel(
                     fillColor: Colors.white,
                     controller: controller.usernameController,
@@ -54,17 +52,13 @@ class FormSignInWidget extends GetView<LoginController> {
                     validator: (value) => validateInput(
                         nameField: SignInStr.account, value: value),
                   ),
-                  onCaretMoved: (Offset? globalCaretPosition) {
-                    controller.teddyController
-                        .coverEyes(globalCaretPosition == null);
-                    controller.teddyController.lookAt(globalCaretPosition);
-                  },
                 ),
               ),
               UtilWidget.sizedBoxPaddingHuge,
               Obx(
-                () => TrackingTextInput(
+                () => BuildInputTextWithLabel(
                   label: SignInStr.password,
+                  labelColor: Colors.white,
                   inputTextModel: InputTextModel(
                     fillColor: Colors.white,
                     enable: !controller.isShowLoading.value,
@@ -74,11 +68,6 @@ class FormSignInWidget extends GetView<LoginController> {
                         nameField: SignInStr.password, value: value),
                     obscureText: true,
                   ),
-                  onCaretMoved: (Offset? globalCaretPosition) {
-                    controller.teddyController
-                        .coverEyes(globalCaretPosition != null);
-                    controller.teddyController.lookAt(globalCaretPosition);
-                  },
                 ),
               ),
               UtilWidget.sizedBoxPadding,
@@ -100,8 +89,8 @@ class FormSignInWidget extends GetView<LoginController> {
                     function: controller.funcLogin,
                     titleButton: SignInStr.signIn,
                     elevation: 0,
-                    backgroundColor: Colors.white,
-                    colorText: Colors.black,
+                    backgroundColor: HexColor.fromHex("0025B1"),
+                    colorText: Colors.white,
                     isShowLoading: true,
                     isLoading: controller.isShowLoading.value,
                   ),

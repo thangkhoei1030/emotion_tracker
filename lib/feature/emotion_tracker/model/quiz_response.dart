@@ -84,30 +84,30 @@ class QuizResponse {
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
-  
+
     return other is QuizResponse &&
-      other.id == id &&
-      other.customerId == customerId &&
-      other.created == created &&
-      other.totalResultOne == totalResultOne &&
-      other.totalResultTwo == totalResultTwo &&
-      other.totalResultThree == totalResultThree &&
-      other.totalResultFour == totalResultFour &&
-      other.totalResultFive == totalResultFive &&
-      listEquals(other.quizsDetail, quizsDetail);
+        other.id == id &&
+        other.customerId == customerId &&
+        other.created == created &&
+        other.totalResultOne == totalResultOne &&
+        other.totalResultTwo == totalResultTwo &&
+        other.totalResultThree == totalResultThree &&
+        other.totalResultFour == totalResultFour &&
+        other.totalResultFive == totalResultFive &&
+        listEquals(other.quizsDetail, quizsDetail);
   }
 
   @override
   int get hashCode {
     return id.hashCode ^
-      customerId.hashCode ^
-      created.hashCode ^
-      totalResultOne.hashCode ^
-      totalResultTwo.hashCode ^
-      totalResultThree.hashCode ^
-      totalResultFour.hashCode ^
-      totalResultFive.hashCode ^
-      quizsDetail.hashCode;
+        customerId.hashCode ^
+        created.hashCode ^
+        totalResultOne.hashCode ^
+        totalResultTwo.hashCode ^
+        totalResultThree.hashCode ^
+        totalResultFour.hashCode ^
+        totalResultFive.hashCode ^
+        quizsDetail.hashCode;
   }
 }
 
@@ -121,7 +121,6 @@ class QuizsDetail {
     this.questionIcon,
     this.answer,
     this.executionTime,
-    this.isAnswerDone = false,
   });
 
   final int? id;
@@ -132,7 +131,6 @@ class QuizsDetail {
   final String? questionIcon;
   final int? answer;
   final dynamic executionTime;
-  final bool isAnswerDone;
 
   QuizsDetail copyWith({
     int? id,
@@ -143,7 +141,6 @@ class QuizsDetail {
     String? questionIcon,
     int? answer,
     dynamic? executionTime,
-    bool? isAnswerDone,
   }) {
     return QuizsDetail(
       id: id ?? this.id,
@@ -154,7 +151,6 @@ class QuizsDetail {
       questionIcon: questionIcon ?? this.questionIcon,
       answer: answer ?? this.answer,
       executionTime: executionTime ?? this.executionTime,
-      isAnswerDone: isAnswerDone ?? this.isAnswerDone,
     );
   }
 
@@ -190,29 +186,27 @@ class QuizsDetail {
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
-  
+
     return other is QuizsDetail &&
-      other.id == id &&
-      other.questionId == questionId &&
-      other.questionName == questionName &&
-      other.questionDescription == questionDescription &&
-      other.questionColor == questionColor &&
-      other.questionIcon == questionIcon &&
-      other.answer == answer &&
-      other.executionTime == executionTime &&
-      other.isAnswerDone == isAnswerDone;
+        other.id == id &&
+        other.questionId == questionId &&
+        other.questionName == questionName &&
+        other.questionDescription == questionDescription &&
+        other.questionColor == questionColor &&
+        other.questionIcon == questionIcon &&
+        other.answer == answer &&
+        other.executionTime == executionTime;
   }
 
   @override
   int get hashCode {
     return id.hashCode ^
-      questionId.hashCode ^
-      questionName.hashCode ^
-      questionDescription.hashCode ^
-      questionColor.hashCode ^
-      questionIcon.hashCode ^
-      answer.hashCode ^
-      executionTime.hashCode ^
-      isAnswerDone.hashCode;
+        questionId.hashCode ^
+        questionName.hashCode ^
+        questionDescription.hashCode ^
+        questionColor.hashCode ^
+        questionIcon.hashCode ^
+        answer.hashCode ^
+        executionTime.hashCode;
   }
 }

@@ -11,20 +11,35 @@ class HomePage extends BaseGetWidget<HomeController> {
   Widget buildWidgets(BuildContext context) {
     return PageScaffold(
       showAppBar: false,
-      child: SingleChildScrollView(
-        physics: const BouncingScrollPhysics(),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const WelcomeComponent().paddingAll(AppDimens.defaultPadding),
-            UtilWidget.sizedBoxPadding,
-            const CreateTrackingComponent()
-                .paddingAll(AppDimens.defaultPadding),
-            UtilWidget.sizedBoxPadding,
-            const GrapEmotionComponent(),
-            UtilWidget.sizedBoxPadding,
-            const HomeSupportComponent().paddingAll(AppDimens.defaultPadding),
-          ],
+      child: UtilWidget.buildErrorOccurred(
+        controller,
+        onReload: controller.onReloadErrorOccured,
+        isHaveData: () =>
+            controller.userInfoResponse.value != UserInfoResponse(),
+        child: Obx(
+          () => controller.isShowLoading.value
+              ? const LoadingAnimationLottie(
+                  animationDialogType: AnimationDialogType.quizLoading,
+                  description: HomeStr.loadingDescription,
+                )
+              : SingleChildScrollView(
+                  physics: const BouncingScrollPhysics(),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const WelcomeComponent()
+                          .paddingAll(AppDimens.defaultPadding),
+                      UtilWidget.sizedBoxPadding,
+                      const CreateTrackingComponent()
+                          .paddingAll(AppDimens.defaultPadding),
+                      UtilWidget.sizedBoxPadding,
+                      const GrapEmotionComponent(),
+                      UtilWidget.sizedBoxPadding,
+                      const HomeSupportComponent()
+                          .paddingAll(AppDimens.defaultPadding),
+                    ],
+                  ),
+                ),
         ),
       ),
     );

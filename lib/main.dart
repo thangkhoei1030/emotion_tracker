@@ -1,8 +1,7 @@
 import 'dart:io';
 import 'package:device_preview/device_preview.dart';
 import 'package:emotion_tracker/core/src_core.dart';
-import 'package:emotion_tracker/pages/pages.dart';
-import 'package:emotion_tracker/pages/routes.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -10,6 +9,8 @@ import 'package:path_provider/path_provider.dart' as path_provider;
 import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:get_storage/get_storage.dart';
+
+import 'pages/src_pages.dart';
 
 String applicationPath = "";
 void main() async {
@@ -38,21 +39,20 @@ void main() async {
       overlays: [SystemUiOverlay.bottom, SystemUiOverlay.top]);
 
   // await FirebaseAnalyticsSetup.writeLogErrorResponse(error: "ERRORRRRR");
-  ///TODO: Chỉ sử dụng khi muốn test nhiều màn hình
-  // runApp(
-  //   MediaQuery(
-  //     data: const MediaQueryData(),
-  //     child: Builder(
-  //       builder: (context) => DevicePreview(
-  //         enabled: kDebugMode,
-  //         builder: (context) {
-  //           widthScreen = MediaQuery.of(context).size.width;
-  //           return const MyApp();
-  //         }, // Wrap your app
-  //       ),
-  //     ),
-  //   ),
-  // );
+  // /TODO: Chỉ sử dụng khi muốn test nhiều màn hình
+  runApp(
+    MediaQuery(
+      data: const MediaQueryData(),
+      child: Builder(
+        builder: (context) => DevicePreview(
+          enabled: kDebugMode,
+          builder: (context) {
+            return const MyApp();
+          }, // Wrap your app
+        ),
+      ),
+    ),
+  );
 
   //TODO:Logging Sentry
   // runZonedGuarded(
@@ -128,25 +128,21 @@ class _MyAppState extends State<MyApp> {
           debugShowCheckedModeBanner: false,
           initialRoute: AppRoutes.splashPage,
           getPages: PageRoutes.pageRoutes,
-          // builder: DevicePreview.appBuilder,
+          builder: DevicePreview.appBuilder,
           useInheritedMediaQuery: false,
-          builder: (context, child) => ScrollConfiguration(
-            behavior: MyBehavior(),
-            child: MediaQuery(
-              data:
-                  MediaQuery.of(context).copyWith(alwaysUse24HourFormat: true),
-              child: GestureDetector(
-                  onTap: () {
-                    FocusManager.instance.primaryFocus?.unfocus();
-                  },
-                  child: child ?? Container()),
-            ),
-          ),
+          // builder: (context, child) => ScrollConfiguration(
+          //   behavior: MyBehavior(),
+          //   child: MediaQuery(
+          //     data:
+          //         MediaQuery.of(context).copyWith(alwaysUse24HourFormat: true),
+          //     child: GestureDetector(
+          //         onTap: () {
+          //           FocusManager.instance.primaryFocus?.unfocus();
+          //         },
+          //         child: child ?? Container()),
+          //   ),
+          // ),
           title: AppStr.appName,
-          themeMode: getStorage.read(AppConst.keyDarkMode) ?? false
-              ? ThemeMode.dark
-              : ThemeMode.light,
-          darkTheme: AppTheme().getThemeByAppTheme(isDarkMode: true),
           theme: AppTheme().getThemeByAppTheme(),
           navigatorObservers: [
             NavigatorObservers(),

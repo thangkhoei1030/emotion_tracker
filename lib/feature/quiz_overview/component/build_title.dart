@@ -16,7 +16,7 @@ class BuildTitle extends GetView<QuizOverviewController> {
             textAlign: TextAlign.start,
             title: QuizOverviewSting.doYouWantContinue,
             style: Get.textTheme.bodySmall!.copyWith(
-              fontSize: 28,
+              fontSize: 32,
               fontWeight: FontWeight.bold,
               color: Colors.white,
             ),
@@ -26,7 +26,7 @@ class BuildTitle extends GetView<QuizOverviewController> {
             alignment: Alignment.centerRight,
             child: TextBuild(
               title:
-                  "${controller.emotionTrackerController.currentQuestionIndex.value} / ${controller.emotionTrackerController.totalQuestion}",
+                  "${controller.emotionTrackerController.numberQuestionAnswer} / ${controller.emotionTrackerController.totalQuestion}",
               textColor: Colors.white,
               fontSize: AppDimens.sizeTextLarge,
             ),

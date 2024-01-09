@@ -34,6 +34,8 @@ class EmotionTrackerControllerImp extends EmotionTrackerController {
       });
     } finally {
       hideLoading();
+      _nextPage(isNextPage: false);
+      _updateEmotionFromNextQuestion();
     }
   }
 
@@ -44,18 +46,22 @@ class EmotionTrackerControllerImp extends EmotionTrackerController {
   }
 
   @override
-  void onQuestionChange(int index) async {
+  Future<void> sendAnswerToServer(int index) async {
     var questionForAnswer = quizResponse.quizsDetail[index];
+
+    var _oldEmotion = currentEmotion.value.ceil() + 1;
+
     AnswerRequest answerRequest = AnswerRequest(
-      answer: currentEmotion.value.ceil() + 1,
+      answer: _oldEmotion,
       questionId: questionForAnswer.questionId,
       quizId: quizResponse.id,
     );
-
-    currentEmotion.value = 0;
+    quizResponse.quizsDetail[index] = quizResponse.quizsDetail[index].copyWith(
+      answer: _oldEmotion,
+    );
     try {
       await emotionTrackerRepository.sendAnswer(answerRequest).then((value) {
-        print("done");
+        print("ok");
       });
     } finally {
       print(quizResponse.quizsDetail.map((e) => e.answer));
@@ -68,26 +74,35 @@ class EmotionTrackerControllerImp extends EmotionTrackerController {
   }
 
   @override
-  void nextQuestionOrSumary(int index) {
-    quizResponse.quizsDetail[index] = quizResponse.quizsDetail[index].copyWith(
-      isAnswerDone: true,
-      answer: currentEmotion.value.ceil() + 1,
-    );
+  void nextQuestionOrSumary(int index) async {
     try {
-      onQuestionChange(index);
+      sendAnswerToServer(index);
     } finally {
-      if (index != totalQuestion.value - 1) {
+      if (isLastQuestion) {
+        Get.toNamed(AppRoutes.congratulationQuiz);
+      }
+      _nextPage();
+      _updateEmotionFromNextQuestion();
+    }
+  }
+
+  void _nextPage({bool isNextPage = true}) {
+    if (!isLastQuestion) {
+      int firstQuestionDontAnswer = quizResponse.quizsDetail
+          .indexWhere((element) => element.answer == null);
+      if (firstQuestionDontAnswer != -1) {
+        currentQuestionIndex.value = firstQuestionDontAnswer;
+      } else if (isNextPage) {
         currentQuestionIndex.value++;
       }
-      currentEmotion.value = (quizResponse
-                  .quizsDetail[currentQuestionIndex.value].answer
-                  ?.toDouble() ??
-              1) -
-          1;
     }
+  }
 
-    if (index == totalQuestion.value - 1) {
-      Get.offAndToNamed(AppRoutes.congratulationQuiz);
-    }
+  void _updateEmotionFromNextQuestion() {
+    currentEmotion.value = (quizResponse
+                .quizsDetail[currentQuestionIndex.value].answer
+                ?.toDouble() ??
+            1) -
+        1;
   }
 }

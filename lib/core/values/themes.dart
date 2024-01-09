@@ -29,18 +29,17 @@ class AppTheme {
         ),
         hintStyle: base.textTheme.bodyText1,
         border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(AppDimens.radius8),
-            borderSide: BorderSide(color: primaryColor)
-            // borderSide: BorderSide(color: Colors.grey.shade400),
-            ),
+          borderRadius: BorderRadius.circular(AppDimens.radius8),
+
+          // borderSide: BorderSide(color: Colors.grey.shade400),
+        ),
         enabledBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(AppDimens.radius8),
-            // borderSide: BorderSide(color: Colors.grey.shade400),
-            borderSide: BorderSide(color: primaryColor)),
+          borderRadius: BorderRadius.circular(AppDimens.radius8),
+          // borderSide: BorderSide(color: Colors.grey.shade400),
+        ),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(AppDimens.radius8),
           // borderSide: BorderSide(color: AppColors.appColor),
-          borderSide: BorderSide(color: primaryColor),
         ),
       );
     }
@@ -158,8 +157,8 @@ class AppTheme {
         onPrimary: onBackgroundColor,
         secondary: primaryColor,
         onSecondary: primaryColor,
-        error: AppColors.colorError,
-        onError: AppColors.colorError,
+        error: Colors.red,
+        onError: Colors.red,
         background: primaryColor,
         onBackground: onBackgroundColor,
         surface: backgroundColor,

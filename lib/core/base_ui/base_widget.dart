@@ -117,20 +117,17 @@ class PageScaffold extends StatelessWidget {
                 // toolbarHeight: height ?? kToolbarHeight,
               )
             : null,
-        body: Stack(
-          children: [
-            child,
-            if (showFloatingButton)
-              floatingActionButton ??
-                  FloatingButtonDraggable(
-                    isStack: true,
-                    // backgroundColor: AppColors.appColor,
-                    ///TODO: Bottom sheet
-                    onPressed: () => Get.bottomSheet(Container()),
-                    iconData: Iconsax.call_outgoing,
-                  )
-          ],
-        ),
+        floatingActionButton: showFloatingButton
+            ? floatingActionButton ??
+                FloatingButtonDraggable(
+                  isStack: true,
+                  // backgroundColor: AppColors.appColor,
+                  ///TODO: Bottom sheet
+                  onPressed: () => Get.bottomSheet(Container()),
+                  iconData: Iconsax.call_outgoing,
+                )
+            : const SizedBox.shrink(),
+        body: child,
       ),
     );
   }

@@ -1,9 +1,11 @@
 import 'package:emotion_tracker/core/src_core.dart';
+import 'package:emotion_tracker/feature/src_feature.dart';
 import 'package:emotion_tracker/pages/src_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 
-class WelcomeComponent extends StatelessWidget {
+class WelcomeComponent extends GetView<HomeController> {
   const WelcomeComponent({super.key});
 
   @override
@@ -15,21 +17,52 @@ class WelcomeComponent extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const TextBuild(
-                title: 'Hi ThangNQ',
+              TextBuild(
+                title: 'Hi ${controller.userInfoResponse.value.fullName ?? ""}',
                 isBoldText: true,
               ),
-              SimpleButton(
-                onPressed: () {
-                  APP_DATA.delete(AppConst.keyUserName);
-                  APP_DATA.delete(AppConst.keyUserpassword);
-                  Get.offAllNamed(AppRoutes.loginPage);
-                },
-                child: const CircleAvatarBuilder(
-                  backgroundColor: Colors.transparent,
-                  child: Icon(Icons.output),
+              Obx(
+                () => NetworkImageWidget(
+                  widgetProcessCallBack: (context, url, progress) {
+                    return Container(
+                      color: Colors.transparent,
+                      height: 50,
+                      width: 50,
+                      child: Center(
+                          child: LoadingAnimationWidget.bouncingBall(
+                        color: Colors.red,
+                        size: 20,
+                      )),
+                    );
+                  },
+                  widgetImageBuilder: (context, imageProvider) {
+                    return CardBuilder(
+                      backgroundColor: Colors.transparent,
+                      height: 50,
+                      width: 50,
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(100),
+                        child: Container(
+                          decoration: BoxDecoration(
+                            image: DecorationImage(
+                              image: imageProvider,
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                        ),
+                      ),
+                    );
+                  },
+                  onPressed: () {
+                    Get.toNamed(AppRoutes.profileEdit)?.then((value) {
+                      if (value != null) {
+                        controller.updateUser();
+                      }
+                    });
+                  },
+                  urlImage: controller.userInfoResponse.value.avatar.toUrlCDN(),
                 ),
-              )
+              ),
             ],
           ),
         ),
@@ -38,8 +71,8 @@ class WelcomeComponent extends StatelessWidget {
           title: "Chào bạn!\nChúc một ngày mới tốt lành",
           isBoldText: true,
           textAlign: TextAlign.start,
-          fontSize: AppDimens.sizeTextMedium,
-        )
+          fontSize: 24,
+        ),
       ],
     );
   }

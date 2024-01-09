@@ -16,11 +16,28 @@ abstract class EmotionTrackerController extends BaseGetxController {
 
   QuizResponse quizResponse = QuizResponse();
 
-  void onQuestionChange(int index);
+  Future<void> sendAnswerToServer(int index);
 
   void emotionChange(double value);
 
   Future<void> getQuiz();
 
   void nextQuestionOrSumary(int index);
+
+  bool get isFirstQuestion =>
+      quizResponse.quizsDetail
+          .where((element) => element.answer == null)
+          .length ==
+      totalQuestion.value;
+
+  bool get isLastQuestion =>
+      quizResponse.quizsDetail
+              .where((element) => element.answer == null)
+              .length ==
+          1 ||
+      (numberQuestionAnswer == totalQuestion.value &&
+          currentQuestionIndex.value == totalQuestion.value - 1);
+  int get numberQuestionAnswer => quizResponse.quizsDetail
+      .where((element) => element.answer != null)
+      .length;
 }

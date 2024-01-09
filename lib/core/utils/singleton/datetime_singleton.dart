@@ -37,7 +37,7 @@ class DateTimeFormat {
       case 6:
         return "Thứ 7";
       case 7:
-        return "Chủ nhật";
+        return "CN";
       default:
         return "";
     }

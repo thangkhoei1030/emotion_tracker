@@ -1,7 +1,13 @@
 class ImageAsset {
-  static const String empty = "assets/svg/No-Image-Placeholder.svg";
-  static const String sadFace = "assets/svg/sad_face.svg";
-  static const String zalo = "assets/img/zalo.png";
-  static const String messenger = "assets/img/messenger.png";
-  static const String dagoLogo = "assets/img/dago_logo.jpeg";
+  static const String appImages = "assets/img/app_images.png";
+  static const String chartIcon = "assets/img/chart_icon.png";
+  static const String chartImage = "assets/img/chart_image.png";
+  static const String chartLineImage = "assets/img/chart_line_image.png";
+  static const String giftIcon = "assets/img/gift_icon.png";
+  static const String giftImage = "assets/img/gift_image.png";
+  static const String homeCreateEmotionIcon =
+      "assets/img/home_create_emotion_icon.png";
+  static const String supportIcon = "assets/img/support_icon.png";
+  static const String supportImage = "assets/img/support_image.png";
+  static const String emptyAccount = "assets/img/empty_account.png";
 }

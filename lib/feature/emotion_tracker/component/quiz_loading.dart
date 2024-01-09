@@ -1,4 +1,3 @@
-import 'package:emotion_tracker/feature/src_feature.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'dart:math' as math;
@@ -12,7 +11,12 @@ class QuizLoading extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: Get.width,
-      color: HSLColor.fromColor(Colors.blue).withLightness(0.7).toColor(),
+      decoration: BoxDecoration(
+          gradient: LinearGradient(
+        begin: Alignment.topLeft,
+        end: Alignment.bottomRight,
+        colors: AppColors.mainBackGroundColor,
+      )),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: const [

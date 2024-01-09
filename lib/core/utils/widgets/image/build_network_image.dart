@@ -43,54 +43,82 @@ class NetworkImageWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return SimpleButton(
       onPressed: onPressed,
-      child: CachedNetworkImage(
-        memCacheHeight: heightImage?.ceil(),
-        memCacheWidth: widthImage?.ceil(),
-        color: HexColor.fromHex(layout?.colorItem),
-        progressIndicatorBuilder: widgetProcessCallBack ??
-            (context, url, progress) {
-              return Container(
-                color: Colors.transparent,
-                height: heightImage,
-                width: widthImage,
-                child: Center(
-                    child: LoadingAnimationWidget.bouncingBall(
-                  color: Colors.red,
-                  size: 20,
-                )),
-              );
-            },
-        useOldImageOnUrlChange: false,
-        imageBuilder: widgetImageBuilder ??
-            (context, imageProvider) {
-              return CardBuilder(
-                backgroundColor: backgroundColor ?? Colors.transparent,
-                height: heightImage,
-                width: widthImage,
+      child: urlImage.isNotEmpty
+          ? CachedNetworkImage(
+              memCacheHeight: heightImage?.ceil(),
+              memCacheWidth: widthImage?.ceil(),
+              color: HexColor.fromHex(layout?.colorItem),
+              progressIndicatorBuilder: widgetProcessCallBack ??
+                  (context, url, progress) {
+                    return Container(
+                      color: Colors.transparent,
+                      height: heightImage,
+                      width: widthImage,
+                      child: Center(
+                          child: LoadingAnimationWidget.bouncingBall(
+                        color: Colors.red,
+                        size: 20,
+                      )),
+                    );
+                  },
+              useOldImageOnUrlChange: false,
+              imageBuilder: widgetImageBuilder ??
+                  (context, imageProvider) {
+                    return CardBuilder(
+                      backgroundColor: backgroundColor ?? Colors.transparent,
+                      height: heightImage,
+                      width: widthImage,
+                      child: ClipRRect(
+                        borderRadius: radiusImage.radiusAll != null
+                            ? BorderRadius.circular(radiusImage.radiusAll!)
+                            : BorderRadius.only(
+                                bottomRight: Radius.circular(
+                                    radiusImage.radiusBottomRight ?? 0),
+                                bottomLeft: Radius.circular(
+                                    radiusImage.radiusBottomLeft ?? 0),
+                                topLeft: Radius.circular(
+                                    radiusImage.radiusTopLeft ?? 0),
+                                topRight: Radius.circular(
+                                    radiusImage.radiusTopRight ?? 0),
+                              ),
+                        child: Container(
+                          decoration: BoxDecoration(
+                            image: DecorationImage(
+                              image: imageProvider,
+                              fit: fit,
+                            ),
+                          ),
+                        ),
+                      ),
+                    );
+                  },
+              errorWidget: widgetErrorCallBack ??
+                  (context, _, error) {
+                    return CardBuilder(
+                      backgroundColor: Colors.transparent,
+                      radiusModel: radiusImage,
+                      child: BuildImageLoadError(
+                        heightImage: heightImage,
+                        widthImage: widthImage,
+                        layout: layout,
+                        isSlider: isSlider,
+                        radiusModel: radiusImage,
+                      ),
+                    );
+                  },
+              imageUrl: urlImage,
+            )
+          : CardBuilder(
+              backgroundColor: Colors.transparent,
+              radiusModel: radiusImage,
+              child: BuildImageLoadError(
+                heightImage: heightImage,
+                widthImage: widthImage,
+                layout: layout,
+                isSlider: isSlider,
                 radiusModel: radiusImage,
-                child: Container(
-                  decoration: BoxDecoration(
-                    image: DecorationImage(
-                      image: imageProvider,
-                      fit: fit,
-                    ),
-                  ),
-                ),
-              );
-            },
-        errorWidget: widgetErrorCallBack ??
-            (context, _, error) {
-              return CardBuilder(
-                radiusModel: radiusImage,
-                child: BuildImageLoadError(
-                  layout: layout,
-                  isSlider: isSlider,
-                  radiusModel: radiusImage,
-                ),
-              );
-            },
-        imageUrl: urlImage,
-      ),
+              ),
+            ),
     );
   }
 }

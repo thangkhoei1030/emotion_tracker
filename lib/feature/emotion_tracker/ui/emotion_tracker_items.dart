@@ -9,9 +9,9 @@ class EmotionTrackerItemBuilder extends GetView<EmotionTrackerController> {
 
   final int index;
 
-  String get titleButton => index == 0
+  String get titleButton => controller.isFirstQuestion
       ? EmotionTrackerString.start
-      : index == controller.totalQuestion.value - 1
+      : controller.isLastQuestion
           ? EmotionTrackerString.done
           : EmotionTrackerString.next;
 

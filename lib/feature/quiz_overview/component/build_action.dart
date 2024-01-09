@@ -12,7 +12,7 @@ class BuildAction extends GetView<QuizOverviewController> {
       children: [
         Expanded(
             child: BaseButton(
-          backgroundColor: HexColor.fromHex("4b68e4"),
+          backgroundColor: HexColor.fromHex("4B68E4"),
           colorText: Colors.white,
           function: () {
             controller.onDoneQuiz();

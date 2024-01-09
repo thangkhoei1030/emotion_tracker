@@ -1,6 +1,5 @@
 import 'package:emotion_tracker/feature/src_feature.dart';
 import 'package:emotion_tracker/pages/src_pages.dart';
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:emotion_tracker/core/src_core.dart';
 
@@ -21,6 +20,7 @@ class LoginControllerImp extends LoginController with AnimationLogin {
 
   void _initController() {
     loginRepository = LoginRepository(this);
+    usernameController.text = APP_DATA.get(AppConst.keyUserName) ?? "";
   }
 
   @override
@@ -46,10 +46,8 @@ class LoginControllerImp extends LoginController with AnimationLogin {
     await CookiesSingleton()
         .createCookiesForUser(userName: usernameController.text);
     await loginRepository.login(loginRequest).then((value) async {
-      if (value != null) {
-        await _saveAccountToLocal(value);
-        _gotoHomePage();
-      }
+      await _saveAccountToLocal(value);
+      _gotoHomePage();
     });
   }
 

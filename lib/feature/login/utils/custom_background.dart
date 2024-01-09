@@ -1,3 +1,4 @@
+import 'package:emotion_tracker/core/src_core.dart';
 import 'package:flutter/material.dart';
 import 'dart:ui' as ui;
 
@@ -8,14 +9,16 @@ class CustomBackground extends CustomPainter {
   final double viewInsertBottom;
   @override
   void paint(Canvas canvas, Size size) {
-    final heightPaintColor = size.height;
     final paintBlue = Paint()
       ..style = PaintingStyle.fill
       ..strokeWidth = 2
       ..shader = ui.Gradient.linear(
-          Offset(0, heightPaintColor),
+          const Offset(
+            0,
+            0,
+          ),
           Offset(Get.width, Get.height),
-          [Colors.blue.withOpacity(0.85), Colors.blue])
+          AppColors.backgroundColorLogin)
       ..color = Colors.blue;
     var pathBlue = Path();
 
@@ -45,7 +48,7 @@ class CustomBackground extends CustomPainter {
         Get.width / 2, heightPaintBlue + 100, Get.width, heightPaintBlue);
     pathYellow.lineTo(Get.width, heightPaintYellow);
     pathYellow.quadraticBezierTo(
-        Get.width / 2, heightPaintBlue + 100, 0, heightPaintYellow);
+        Get.width / 2, heightPaintBlue + 150, 0, heightPaintYellow);
     canvas.drawPath(pathYellow, paintYellow);
   }
 

@@ -28,6 +28,6 @@ class CongratulationControllerImp extends CongratulationController {
   @override
   Future<void> onReloadErrorOccured() async {
     super.onReloadErrorOccured();
-    _getInfoEmotionComplete();
+    await _getInfoEmotionComplete();
   }
 }

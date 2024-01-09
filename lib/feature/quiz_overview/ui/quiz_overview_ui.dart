@@ -12,12 +12,10 @@ class QuizOverviewPage extends BaseGetWidget<QuizOverviewController> {
         showAppBar: false,
         child: CardBuilder(
           linearGradient: LinearGradient(
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
-              colors: [
-                Colors.lightBlue.withOpacity(0.5),
-                Colors.lightBlue,
-              ]),
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: AppColors.mainBackGroundColor,
+          ),
           child: Column(
             children: const [
               BuildTitle(),

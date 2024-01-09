@@ -52,11 +52,9 @@ class AppController extends GetxController {
         ),
       )
           .then((value) async {
-        if (value != null) {
-          FlutterNativeSplash.remove();
-          await CookiesSingleton().createCookiesForUser();
-          await _loginSuccess();
-        }
+        FlutterNativeSplash.remove();
+        await CookiesSingleton().createCookiesForUser();
+        await _loginSuccess();
       });
     } catch (e) {
       FlutterNativeSplash.remove();

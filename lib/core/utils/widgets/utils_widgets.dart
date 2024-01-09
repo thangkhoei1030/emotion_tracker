@@ -101,10 +101,9 @@ class UtilWidget {
     return Obx(
       () => controller.isError.value && !isHaveData()
           ? isPage
-              ? LoadingOverlayWidget(
-                  child: PageScaffold(
-                    showAppBar: isShowAppBar,
-                    showBackButton: true,
+              ? PageScaffold(
+                  showAppBar: false,
+                  child: LoadingOverlayWidget(
                     child: _buildError(isPage, onReload: onReload),
                   ),
                 )

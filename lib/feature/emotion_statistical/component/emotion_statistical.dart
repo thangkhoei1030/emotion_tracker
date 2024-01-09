@@ -22,6 +22,7 @@ class EmotionStatistical extends GetView<EmotionStatisticalController> {
               showTitles: true,
               getTitlesWidget: (value, meta) => TextBuild(
                 fontSize: AppDimens.sizeTextSmall,
+                textColor: Colors.white,
                 title: DateTimeFormat().getDayOfWeakFromDay(
                   value.floor(),
                 ),
@@ -79,10 +80,7 @@ class EmotionStatistical extends GetView<EmotionStatisticalController> {
           gradient: LinearGradient(
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
-            colors: [
-              Colors.yellow.shade300,
-              Colors.lightBlueAccent.withOpacity(0.2),
-            ],
+            colors: AppColors.barChartColor,
           ),
         ),
       ];
@@ -94,10 +92,7 @@ class EmotionStatistical extends GetView<EmotionStatisticalController> {
       linearGradient: LinearGradient(
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
-          colors: [
-            Colors.lightBlue.withOpacity(0.5),
-            Colors.lightBlue,
-          ]),
+          colors: AppColors.chartBackGroundColor),
       radiusModel: const RadiusModel(radiusAll: AppDimens.radius20),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -122,10 +117,11 @@ class EmotionStatistical extends GetView<EmotionStatisticalController> {
                     ),
                   ],
                 ),
-                const AnimationDialog(
-                  animationDialogType: AnimationDialogType.graphStatistical,
-                  height: 100,
-                )
+                Image.asset(ImageAsset.chartLineImage)
+                // const AnimationDialog(
+                //   animationDialogType: AnimationDialogType.graphStatistical,
+                //   height: 100,
+                // )
               ],
             ),
           ),

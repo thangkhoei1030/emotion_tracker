@@ -8,4 +8,10 @@ class ApiUrl {
   static const String urlComplete = "api/quiz/complete";
   //emotion statistical
   static const String urlStatistical = "api/quiz/statistical";
+  //User info
+  static const String urlUserInfo = "api/member/infomation";
+
+  static const String changePassword = "api/member/change-password";
+
+  static const String updateAvatar = "api/member/update-avatar";
 }

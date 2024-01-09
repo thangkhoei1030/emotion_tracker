@@ -2,7 +2,6 @@ import 'package:emotion_tracker/core/src_core.dart';
 import 'package:emotion_tracker/pages/src_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:lottie/lottie.dart';
 
 class GrapEmotionComponent extends StatelessWidget {
   const GrapEmotionComponent({super.key});
@@ -14,7 +13,7 @@ class GrapEmotionComponent extends StatelessWidget {
         Get.toNamed(AppRoutes.emotionStatisticalPage);
       },
       child: SizedBox(
-        height: 150,
+        height: 170,
         child: Stack(
           children: [
             Positioned(
@@ -23,8 +22,8 @@ class GrapEmotionComponent extends StatelessWidget {
               bottom: 15,
               child: CardBuilder(
                 elevation: 8,
-                backgroundColor: HexColor.fromHex("21cbb2"),
-                height: 100,
+                backgroundColor: HexColor.fromHex("21CBB2"),
+                height: 130,
                 radiusModel: const RadiusModel(radiusAll: AppDimens.radius20),
                 child: Row(
                   children: [
@@ -36,8 +35,10 @@ class GrapEmotionComponent extends StatelessWidget {
                         ),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
-                          children: const [
-                            TextBuild(
+                          children: [
+                            Image.asset(ImageAsset.chartIcon),
+                            UtilWidget.sizedBox10,
+                            const TextBuild(
                               title: "Biểu đồ cảm xúc",
                               textColor: Colors.white,
                               fontSize: AppDimens.sizeTextMedium,
@@ -53,15 +54,11 @@ class GrapEmotionComponent extends StatelessWidget {
                 ),
               ).paddingSymmetric(horizontal: AppDimens.defaultPadding),
             ),
-            const Positioned(
-              right: 0,
-              top: -30,
+            Positioned(
+              right: -20,
+              top: -50,
               bottom: 0,
-              child: AnimationDialog(
-                animationDialogType: AnimationDialogType.graph,
-                repeat: true,
-                height: 400,
-              ),
+              child: Image.asset(ImageAsset.chartImage),
             ),
           ],
         ),

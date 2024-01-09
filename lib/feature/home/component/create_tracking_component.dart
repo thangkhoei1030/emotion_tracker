@@ -11,13 +11,17 @@ class CreateTrackingComponent extends StatelessWidget {
     return CardBuilder(
         elevation: 8,
         radiusModel: const RadiusModel(
-          radiusAll: AppDimens.radius20,
+          radiusAll: AppDimens.radius24,
         ),
         paddingModel: const PaddingModel(
           paddingVerical: AppDimens.defaultPadding,
         ),
         boxShadow: AppColors.listDefaultShadow,
-        backgroundColor: HexColor.fromHex("324bca")!.withOpacity(0.8),
+        linearGradient: LinearGradient(
+          begin: Alignment.topLeft,
+          end: Alignment.bottomCenter,
+          colors: AppColors.cardBackgroundColor,
+        ),
         child: IntrinsicHeight(
           child: Row(
             children: [
@@ -31,6 +35,8 @@ class CreateTrackingComponent extends StatelessWidget {
                           DateTime.now(), DateTimePattern.PATTERN_1),
                       textColor: Colors.white,
                     ),
+                    UtilWidget.sizedBoxPaddingHuge,
+                    UtilWidget.sizedBoxPaddingHuge,
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: const [
@@ -43,8 +49,9 @@ class CreateTrackingComponent extends StatelessWidget {
                         TextBuild(
                           title: "Tạo khảo sát",
                           isBoldText: true,
-                          fontSize: AppDimens.sizeTextMedium,
+                          fontSize: AppDimens.sizeTextVeryLarge,
                           textColor: Colors.white,
+                          textAlign: TextAlign.start,
                         )
                       ],
                     ),
@@ -61,15 +68,14 @@ class CreateTrackingComponent extends StatelessWidget {
                       ),
                     )
                   ],
-                ).paddingSymmetric(horizontal: AppDimens.paddingSmall),
-              ),
-              const Expanded(
-                child: AnimationDialog(
-                  animationDialogType: AnimationDialogType.happHome,
                 ),
               ),
+              const AnimationDialog(
+                height: 150,
+                animationDialogType: AnimationDialogType.happHome,
+              ),
             ],
-          ),
+          ).paddingSymmetric(horizontal: AppDimens.paddingSmall),
         ));
   }
 }

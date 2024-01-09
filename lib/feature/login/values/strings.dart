@@ -15,6 +15,7 @@ class SignInStr {
   static const String confirmpassword = "Xác nhận mật khẩu";
   static const String code = "Mã xác nhận";
   static const String notication = "Mã xác nhận đã được gửi đến email của bạn";
-
-
+  static const String hello = "Hello";
+  static const String descriptions =
+      "Chào mừng bạn đã quay trở lại, hãy đăng nhập và cho chúng tôi biết hôm nay của bạn thế nào nhé!";
 }

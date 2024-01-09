@@ -83,7 +83,7 @@ class ShowPopup {
                   child: BaseButton(
                     function: () => function?.call(),
                     titleButton: nameAction.tr,
-                    colorText: AppColors.colorBlueAccent,
+                    colorText: Colors.blueAccent,
                   )),
             ],
           ),

@@ -10,12 +10,14 @@ class BuildInputTextWithLabel extends StatelessWidget {
   final TextStyle? textStyle;
   final double? padding;
   final EdgeInsetsGeometry? paddingText;
+  final Color? labelColor;
 
   const BuildInputTextWithLabel({
     Key? key,
     required this.label,
     required this.inputTextModel,
     this.labelRequired,
+    this.labelColor,
     this.textStyle,
     this.padding,
     this.paddingText,
@@ -38,7 +40,7 @@ class BuildInputTextWithLabel extends StatelessWidget {
                     label,
                     style: (textStyle ?? Get.textTheme.bodyText2)!.copyWith(
                       fontWeight: FontWeight.bold,
-                      color: Colors.white,
+                      color: labelColor ?? Colors.black,
                     ),
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,

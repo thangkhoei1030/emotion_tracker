@@ -80,6 +80,7 @@ class AppDimens {
   static const double radius8 = 8;
   static const double size5 = 5;
   static const double radius20 = 20;
+  static const double radius24 = 24;
   static const double radiusDefault = 44;
   static const double borderDefault = 12;
   // home

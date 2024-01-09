@@ -2,7 +2,6 @@ import 'package:emotion_tracker/core/src_core.dart';
 import 'package:emotion_tracker/feature/src_feature.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_state_manager/src/simple/get_view.dart';
 import 'package:iconsax/iconsax.dart';
 
 class BuildGridviewOverviewQuiz extends GetView<QuizOverviewController> {
@@ -34,7 +33,7 @@ class BuildGridviewOverviewQuiz extends GetView<QuizOverviewController> {
                   backgroundColor: HexColor.fromHex(quizDetail.questionColor),
                   urlImage: quizDetail.questionIcon.toUrlCDN(),
                 ).paddingAll(AppDimens.paddingVerySmall),
-                if (quizDetail.isAnswerDone)
+                if (quizDetail.answer != null)
                   Positioned(
                     right: 0,
                     top: 0,

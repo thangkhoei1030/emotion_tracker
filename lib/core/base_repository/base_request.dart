@@ -86,6 +86,7 @@ class BaseRequest extends GetxService {
 
     CancelToken cancelToken = CancelToken();
     controller.addCancelToken(cancelToken);
+    print(headers);
     try {
       if (requestMethod == RequestMethod.POST) {
         if (isQueryParametersPost) {
@@ -144,12 +145,14 @@ class BaseRequest extends GetxService {
       //     platform: AppStr.currentPlatform,
       //     message: SentryMessage(
       //       response.data.toString(),
+
       //     ),
       //   ),
       // );
       controller.isError.value = false;
       return response.data;
     } catch (e) {
+      print(e.toString());
       // _testRequqest.throwab le = e;
       // _testRequqest.status = const SpanStatus.internalError();
       controller.isError.value = true;
@@ -170,6 +173,7 @@ class BaseRequest extends GetxService {
       jsonData,
       isImage: isImage,
     );
+    print(authentication);
     // String authentication = APP_DATA.get(AppConst.keyToken) ?? "";\
     Map<String, dynamic> mapHeader = {
       "Content-Type": isImage ? "multipart/form-data" : "application/json",

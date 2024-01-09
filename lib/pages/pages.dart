@@ -55,6 +55,10 @@ class PageRoutes {
       name: AppRoutes.congratulationQuiz,
       page: () => const CongratulationsPage(),
     ),
+    GetPage(
+      name: AppRoutes.profileEdit,
+      page: () => const ProfileEditPage(),
+    ),
   ];
 }
 

@@ -1,9 +1,8 @@
 import 'package:emotion_tracker/feature/src_feature.dart';
-import 'package:flare_flutter/flare_actor.dart';
+
 import 'package:flutter/material.dart';
 import 'package:emotion_tracker/core/src_core.dart';
 import 'package:get/get.dart';
-// import 'package:web4s/pages/routes.dart';
 
 class LoginPage extends BaseGetWidget<LoginController> {
   const LoginPage({super.key});
@@ -15,25 +14,33 @@ class LoginPage extends BaseGetWidget<LoginController> {
     return PageScaffold(
       showAppBar: false,
       child: Stack(
-        fit: StackFit.expand,
         children: [
-          AlignTransition(
-            alignment: controller.positionAnimation,
-            child: ScaleTransition(
-              scale: controller.zoomAnimation,
-              child: SizedBox(
-                height: 200,
-                child: FlareActor(
-                  "assets/animation/Teddy.flr",
-                  shouldClip: false,
-                  alignment: Alignment.topCenter,
-                  fit: BoxFit.contain,
-                  controller: controller.teddyController,
+          AnimatedBuilder(
+            animation: controller.stackPositionedIcon,
+            builder: (context, child) => Positioned.fill(
+              top: controller.stackPositionedIcon.value -
+                  MediaQuery.of(context).viewInsets.bottom / 3,
+              right: 0,
+              left: 0,
+              child: AlignTransition(
+                alignment: controller.positionAnimation,
+                child: AnimatedBuilder(
+                  animation: controller.sizeTransition,
+                  builder: (BuildContext context, Widget? child) {
+                    return Container(
+                      height: controller.sizeTransition.value.dy,
+                      width: controller.sizeTransition.value.dx,
+                      decoration: const BoxDecoration(
+                        image: DecorationImage(
+                          image: AssetImage(ImageAsset.appImages),
+                        ),
+                      ),
+                    );
+                  },
                 ),
               ),
             ),
-          ).paddingOnly(bottom: MediaQuery.of(context).viewInsets.bottom),
-          // .marginOnly(top: 150 - keyboardHeight / 100, bottom: keyboardHeight)
+          ),
           Positioned.fill(
             child: SlideTransition(
               position: controller.formPositionAnimation,
@@ -44,7 +51,6 @@ class LoginPage extends BaseGetWidget<LoginController> {
               ),
             ),
           ),
-
           Positioned.fill(
             child: FadeTransition(
               opacity: controller.opacityAnimation,

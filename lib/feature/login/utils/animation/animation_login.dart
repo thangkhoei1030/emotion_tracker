@@ -1,11 +1,10 @@
 import 'package:emotion_tracker/feature/src_feature.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 mixin AnimationLogin on LoginController {
   late final AnimationController animationController;
 
-  late final Animation<double> zoomAnimation;
+  late final Animation<Offset> sizeTransition;
 
   late final Animation<AlignmentGeometry> positionAnimation;
 
@@ -15,6 +14,8 @@ mixin AnimationLogin on LoginController {
 
   late final Animation<Offset> formPositionAnimation;
 
+  late final Animation<double> stackPositionedIcon;
+
   void initialAnimation() {
     showUserInterfaceAnimationController = AnimationController(
         vsync: this, duration: const Duration(milliseconds: 800));
@@ -22,11 +23,17 @@ mixin AnimationLogin on LoginController {
     animationController = AnimationController(
         vsync: this, duration: const Duration(milliseconds: 800));
 
-    zoomAnimation = Tween<double>(begin: 2, end: 1).animate(
+    sizeTransition = Tween<Offset>(
+            begin: const Offset(206, 227), end: const Offset(162, 179))
+        .animate(
       CurvedAnimation(
         parent: animationController,
         curve: Curves.fastOutSlowIn,
       ),
+    );
+
+    stackPositionedIcon = Tween<double>(begin: 0, end: 100).animate(
+      CurvedAnimation(parent: animationController, curve: Curves.fastOutSlowIn),
     );
 
     formPositionAnimation = Tween<Offset>(
@@ -68,7 +75,6 @@ mixin AnimationLogin on LoginController {
   Future<void> loadingAnimation() async {
     await Future.delayed(const Duration(seconds: 2));
     animationController.forward();
-
     showUserInterfaceAnimationController.forward();
   }
 

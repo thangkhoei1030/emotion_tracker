@@ -197,7 +197,8 @@ class BuildInputTextState extends State<BuildInputText> {
                       )
                   : null),
           prefixStyle: const TextStyle(
-              color: Colors.red, backgroundColor: AppColors.colorIconDefault),
+            color: Colors.red,
+          ),
           border: widget.inputTextFormModel.border,
           // ?? OutlineInputBorder(
           //         borderRadius: BorderRadius.circular(AppDimens.radius8),
