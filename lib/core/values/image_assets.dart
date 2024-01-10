@@ -10,4 +10,7 @@ class ImageAsset {
   static const String supportIcon = "assets/img/support_icon.png";
   static const String supportImage = "assets/img/support_image.png";
   static const String emptyAccount = "assets/img/empty_account.png";
+  static const String assetsImage = "assets/img/empty_account.png";
+  static const String profileAppBar = "assets/background/profile_app_bar.png";
+  static const String passwordCheck = "assets/img/password-check.png";
 }

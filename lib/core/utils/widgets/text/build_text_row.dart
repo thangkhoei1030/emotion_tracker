@@ -7,6 +7,7 @@ class BuildTextRow extends StatelessWidget {
     required this.textLeading,
     required this.textTrailing,
     this.textColor,
+    this.textSize,
   });
 
   final String textLeading;
@@ -15,6 +16,8 @@ class BuildTextRow extends StatelessWidget {
 
   final Color? textColor;
 
+  final double? textSize;
+
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -22,12 +25,19 @@ class BuildTextRow extends StatelessWidget {
       children: [
         TextBuild(
           title: textLeading,
-          fontSize: AppDimens.sizeTextSmall,
+          fontSize: textSize ?? AppDimens.sizeTextSmall,
         ),
-        TextBuild(
-          title: textTrailing,
-          isBoldText: true,
-          textColor: textColor,
+        Expanded(
+          child: Align(
+            alignment: Alignment.centerRight,
+            child: TextBuild(
+              fontSize: textSize,
+              title: textTrailing,
+              isBoldText: true,
+              overflow: TextOverflow.fade,
+              textColor: textColor,
+            ),
+          ),
         ),
       ],
     );

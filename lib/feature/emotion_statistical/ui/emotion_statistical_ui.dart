@@ -75,8 +75,6 @@ class EmotionStatisticalPage
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              // const BuildAppBarEmotionStatistical(),
-                              // UtilWidget.sizedBoxPaddingHuge,
                               UtilWidget.sizedBoxPaddingHuge,
                               const EmotionOfDay(),
                               UtilWidget.sizedBoxPaddingHuge,
@@ -92,6 +90,7 @@ class EmotionStatisticalPage
                                 ],
                               ).paddingSymmetric(
                                   horizontal: AppDimens.paddingHuge),
+                              UtilWidget.sizedBoxHeightSafeAreaBottom(context),
                             ],
                           ),
                         ]))

@@ -12,6 +12,8 @@ class UtilWidget {
 
   static const Widget sizedBox30 = SizedBox(height: 30);
 
+  static const Widget sizedBox17 = SizedBox(height: 17);
+
   static const Widget sizedBox8 = SizedBox(height: 8);
 
   static const Widget sizedBoxWidth10 = SizedBox(width: 10);
@@ -37,6 +39,13 @@ class UtilWidget {
 
   static const Widget sizedBoxWidthPaddingSmall =
       SizedBox(width: AppDimens.paddingSmall);
+
+  static Widget sizedBoxHeightSafeAreaTop(BuildContext context) => SizedBox(
+        height: MediaQuery.of(context).padding.top,
+      );
+  static Widget sizedBoxHeightSafeAreaBottom(BuildContext context) => SizedBox(
+        height: MediaQuery.of(context).padding.bottom,
+      );
 
   static Widget buildLogo(String imgLogo, double height) {
     return SizedBox(

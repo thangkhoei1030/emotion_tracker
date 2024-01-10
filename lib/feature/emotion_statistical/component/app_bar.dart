@@ -18,34 +18,59 @@ class BuildAppBarEmotionStatistical
           end: Alignment.bottomRight,
         ),
       ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.end,
         children: [
-          CardBuilder(
-            width: 50,
-            height: 50,
-            radiusModel: const RadiusModel(radiusAll: AppDimens.radius8),
-            onTap: Get.back,
-            elevation: 8,
-            paddingModel:
-                const PaddingModel(paddingAll: AppDimens.paddingSmall),
-            backgroundColor: Colors.white.withOpacity(0.4),
-            child: const Icon(
-              Icons.arrow_back,
-              color: Colors.white,
-            ),
-          ),
-          const TextBuild(
-            title: EmotionStatisticalStr.title,
-            textColor: Colors.white,
-          ),
-          NetworkImageWidget(
-            widthImage: 50,
-            urlImage:
-                controller.homeController.userInfoResponse.value.avatar ?? "",
-          )
+          UtilWidget.sizedBoxHeightSafeAreaTop(context),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              CardBuilder(
+                width: 50,
+                height: 50,
+                radiusModel: const RadiusModel(radiusAll: AppDimens.radius8),
+                onTap: Get.back,
+                elevation: 8,
+                paddingModel:
+                    const PaddingModel(paddingAll: AppDimens.paddingSmall),
+                backgroundColor: Colors.white.withOpacity(0.4),
+                child: const Icon(
+                  Icons.arrow_back,
+                  color: Colors.white,
+                ),
+              ),
+              const TextBuild(
+                title: EmotionStatisticalStr.title,
+                textColor: Colors.white,
+              ),
+              NetworkImageWidget(
+                widthImage: 50,
+                widgetImageBuilder: (context, imageProvider) {
+                  return ClipRRect(
+                    borderRadius: BorderRadius.circular(100),
+                    child: Container(
+                      width: 50,
+                      height: 50,
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                          image: imageProvider,
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                    ),
+                  );
+                },
+                urlImage:
+                    (controller.homeController.userInfoResponse.value.avatar ??
+                            "")
+                        .toUrlCDN(),
+              ),
+            ],
+          ).paddingSymmetric(horizontal: AppDimens.paddingSmall),
+          UtilWidget.sizedBox10,
         ],
-      ).paddingSymmetric(horizontal: AppDimens.paddingSmall),
+      ),
     );
   }
 }

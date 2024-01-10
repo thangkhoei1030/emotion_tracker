@@ -199,7 +199,6 @@ class BuildInputTextState extends State<BuildInputText> {
           prefixStyle: const TextStyle(
             color: Colors.red,
           ),
-          border: widget.inputTextFormModel.border,
           // ?? OutlineInputBorder(
           //         borderRadius: BorderRadius.circular(AppDimens.radius8),
           //         borderSide: BorderSide(color: AppColors.colorBorderInput)
@@ -216,22 +215,34 @@ class BuildInputTextState extends State<BuildInputText> {
                     // color: AppColors.textLabelInput,
                   ),
                 ),
-          enabledBorder: widget.inputTextFormModel.border
-          // ??
+          // enabledBorder ??
           //     OutlineInputBorder(
           //       borderRadius: BorderRadius.circular(AppDimens.radius8),
           //       // borderSide: BorderSide(color: Colors.grey.shade400),
           //       borderSide: BorderSide(color: AppColors.colorBorderInput),
           //     ),
-          ,
-          focusedBorder: widget.inputTextFormModel.border
-          // ??
-          //     OutlineInputBorder(
-          //       borderRadius: BorderRadius.circular(AppDimens.radius8),
+          border: widget.inputTextFormModel.border ??
+              OutlineInputBorder(
+                borderRadius: BorderRadius.circular(AppDimens.radius8),
+                borderSide: BorderSide(color: Colors.grey.shade400),
+              ),
+          enabledBorder: widget.inputTextFormModel.border ??
+              OutlineInputBorder(
+                borderRadius: BorderRadius.circular(AppDimens.radius8),
+                borderSide: BorderSide(color: Colors.grey.shade400),
+              ),
+          focusedBorder: widget.inputTextFormModel.border ??
+              OutlineInputBorder(
+                borderRadius: BorderRadius.circular(AppDimens.radius8),
+                borderSide: BorderSide(color: Colors.grey.shade400),
+              ),
+
+          //focusedBorder ??
+          //     OutlinColor.fromARGB(255, 39, 39, 39)     //       borderRadius: BorderRadius.circular(AppDimens.radius8),
           //       // borderSide: BorderSide(color: AppColors.appColor),
           //       borderSide: BorderSide(color: AppColors.colorBorderInput),
           //     )
-          ,
+
           contentPadding: widget.inputTextFormModel.contentPadding ??
               const EdgeInsets.all(AppDimens.defaultPadding),
           suffixIcon:

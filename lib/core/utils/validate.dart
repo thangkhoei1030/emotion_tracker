@@ -1,24 +1,18 @@
 import 'package:emotion_tracker/core/src_core.dart';
 
-bool isPasswordValidate({
+String? passwordValidate({
   required String password,
-  required int minLength,
-  int maxLength = 0,
 }) {
+  RegExp regex = RegExp(r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,50}$');
   if (password.isStringNotEmpty) {
     // Trường hợp có yêu cầu nhập tối đa vào mật khẩu.
-    if (maxLength > 0) {
-      if (password.length >= minLength && password.length <= maxLength) {
-        return true;
-      }
+    if (!regex.hasMatch(password)) {
+      return 'Enter valid password';
     } else {
-      // Trường hợp chỉ yêu cầu số ký tự tối thiểu nhập vào của mật khẩu.
-      if (password.length >= minLength) {
-        return true;
-      }
+      return null;
     }
   }
-  return false;
+  return 'Enter valid password';
 }
 
 String? validateInput({String? value, required String nameField}) {

@@ -70,6 +70,7 @@ class PageScaffold extends StatelessWidget {
     this.overrideBackFunction,
     this.backgroundColor,
     this.backgroundColorAppBar,
+    this.resizeToAvoidBottomInset = true,
   });
 
   final bool showBackButton;
@@ -94,12 +95,16 @@ class PageScaffold extends StatelessWidget {
 
   final Function()? overrideBackFunction;
 
+  final bool resizeToAvoidBottomInset;
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
+      top: false,
+      bottom: false,
       child: Scaffold(
         backgroundColor: backgroundColor,
-        resizeToAvoidBottomInset: false,
+        resizeToAvoidBottomInset: resizeToAvoidBottomInset,
         appBar: showAppBar
             ? AppBar(
                 backgroundColor: backgroundColor,

@@ -87,14 +87,16 @@ class EmotionTrackerControllerImp extends EmotionTrackerController {
   }
 
   void _nextPage({bool isNextPage = true}) {
+    int firstQuestionDontAnswer = quizResponse.quizsDetail
+        .indexWhere((element) => element.answer == null);
     if (!isLastQuestion) {
-      int firstQuestionDontAnswer = quizResponse.quizsDetail
-          .indexWhere((element) => element.answer == null);
       if (firstQuestionDontAnswer != -1) {
         currentQuestionIndex.value = firstQuestionDontAnswer;
       } else if (isNextPage) {
         currentQuestionIndex.value++;
       }
+    } else {
+      currentQuestionIndex.value = firstQuestionDontAnswer;
     }
   }
 

@@ -27,6 +27,7 @@ class HomePage extends BaseGetWidget<HomeController> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
+                      UtilWidget.sizedBoxHeightSafeAreaTop(context),
                       const WelcomeComponent()
                           .paddingAll(AppDimens.defaultPadding),
                       UtilWidget.sizedBoxPadding,
@@ -37,6 +38,7 @@ class HomePage extends BaseGetWidget<HomeController> {
                       UtilWidget.sizedBoxPadding,
                       const HomeSupportComponent()
                           .paddingAll(AppDimens.defaultPadding),
+                      UtilWidget.sizedBoxHeightSafeAreaBottom(context),
                     ],
                   ),
                 ),

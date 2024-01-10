@@ -28,19 +28,6 @@ class AppTheme {
           color: primaryColor,
         ),
         hintStyle: base.textTheme.bodyText1,
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(AppDimens.radius8),
-
-          // borderSide: BorderSide(color: Colors.grey.shade400),
-        ),
-        enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(AppDimens.radius8),
-          // borderSide: BorderSide(color: Colors.grey.shade400),
-        ),
-        focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(AppDimens.radius8),
-          // borderSide: BorderSide(color: AppColors.appColor),
-        ),
       );
     }
 

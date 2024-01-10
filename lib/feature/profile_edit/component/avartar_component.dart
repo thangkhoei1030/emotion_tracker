@@ -10,9 +10,9 @@ import 'package:image_picker/image_picker.dart';
 class AvatarComponent extends GetView<ProfileEditController> {
   const AvatarComponent({super.key});
 
-  double get avatarSize => Get.width / 2;
+  // double get avatarSize => Get.width / 2;
 
-  double get heightComponent => Get.width * 3 / 5;
+  // double get heightComponent => Get.width * 3 / 5;
 
   String get urlImage => controller.userInfoResponse.value.avatar != null
       ? controller.userInfoResponse.value.avatar.toUrlCDN()
@@ -23,75 +23,95 @@ class AvatarComponent extends GetView<ProfileEditController> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        SizedBox(
-          height: heightComponent,
-          child: Stack(
-            children: [
-              CustomPaint(
-                size: Size.infinite,
-                painter: CustomAvatar(
-                  color: context.primaryColor,
-                  avatarRadius: avatarSize / 2,
-                ),
-              ),
-              Positioned(
-                left: avatarSize / 2,
-                top: heightComponent - avatarSize,
-                child: SimpleButton(
-                  onPressed: () {
-                    Get.bottomSheet(
-                      _buildOptionsPicker(),
-                      backgroundColor: context.backGroundCardColor,
-                      isScrollControlled: false,
-                    );
-                  },
-                  child: Obx(
-                    () => SizedBox(
-                      height: avatarSize,
-                      width: avatarSize,
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(100),
-                        child: controller.image.value != null
-                            ? Container(
-                                decoration: BoxDecoration(
-                                  image: DecorationImage(
-                                    fit: BoxFit.cover,
-                                    image: FileImage(
-                                      File(controller.image.value?.path ?? ""),
-                                    ),
-                                  ),
-                                ),
-                              )
-                            : NetworkImageWidget(
-                                widgetImageBuilder: (context, imageProvider) {
-                                  return Container(
-                                    decoration: BoxDecoration(
-                                      image: DecorationImage(
-                                        image: imageProvider,
-                                        fit: BoxFit.cover,
-                                      ),
-                                    ),
-                                  );
-                                },
-                                urlImage: urlImage,
-                              ),
-                      ),
-                    ),
+        Obx(
+          () => SimpleButton(
+            onPressed: () {
+              Get.bottomSheet(
+                _buildOptionsPicker(),
+                backgroundColor: context.backGroundCardColor,
+                isScrollControlled: false,
+              );
+            },
+            child: Stack(
+              children: [
+                Container(
+                  padding: const EdgeInsets.all(AppDimens.paddingSmall),
+                  height: 175,
+                  width: 175,
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(100),
+                    child: _buildImageExist(),
                   ),
                 ),
-              )
-            ],
+                Positioned(
+                  right: 20,
+                  bottom: 20,
+                  child: Container(
+                    padding: const EdgeInsets.all(AppDimens.paddingVerySmall),
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(100),
+                    ),
+                    alignment: Alignment.bottomRight,
+                    child: const Icon(
+                      Iconsax.camera,
+                      color: Colors.black,
+                      size: AppDimens.sizeIconMedium,
+                    ),
+                  ),
+                )
+              ],
+            ),
           ),
         ),
         UtilWidget.sizedBoxPadding,
         Obx(
           () => TextBuild(
             title: controller.userInfoResponse.value.fullName ?? "",
-            fontSize: AppDimens.sizeTextMedium,
+            fontSize: AppDimens.sizeTextLarge,
             isBoldText: true,
+            textColor: Colors.white,
+          ),
+        ),
+        Obx(
+          () => TextBuild(
+            title: controller.userInfoResponse.value.fullName ?? "",
+            fontSize: AppDimens.sizeTextSmall,
+            textColor: Colors.white,
           ),
         ),
       ],
+    );
+  }
+
+  Widget _buildImageExist() {
+    return _buildCircleBorder(
+      () => NetworkImageWidget(
+        widgetImageBuilder: (context, imageProvider) {
+          return ClipRRect(
+            borderRadius: BorderRadius.circular(100),
+            child: Container(
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: imageProvider,
+                  fit: BoxFit.cover,
+                ),
+              ),
+            ),
+          );
+        },
+        urlImage: controller.userInfoResponse.value.avatar != null
+            ? controller.userInfoResponse.value.avatar.toUrlCDN()
+            : ImageAsset.emptyAccount,
+      ),
+    );
+  }
+
+  Widget _buildCircleBorder(WidgetCallback child) {
+    return Container(
+      padding: const EdgeInsets.all(AppDimens.paddingVerySmall),
+      color: Colors.white,
+      child: child(),
     );
   }
 
@@ -125,7 +145,6 @@ class AvatarComponent extends GetView<ProfileEditController> {
         ListTileWidget(
           onTap: () {
             Get.close(1);
-            controller.image.value = null;
           },
           title: ProfileEditStr.deleteAvatar,
           iconLeading: Iconsax.trash,

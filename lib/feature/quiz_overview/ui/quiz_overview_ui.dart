@@ -17,14 +17,16 @@ class QuizOverviewPage extends BaseGetWidget<QuizOverviewController> {
             colors: AppColors.mainBackGroundColor,
           ),
           child: Column(
-            children: const [
-              BuildTitle(),
+            children: [
+              UtilWidget.sizedBoxHeightSafeAreaTop(context),
+              const BuildTitle(),
               UtilWidget.sizedBoxPadding,
-              Expanded(
+              const Expanded(
                 child: BuildGridviewOverviewQuiz(),
               ),
               UtilWidget.sizedBoxPadding,
-              BuildAction(),
+              const BuildAction(),
+              UtilWidget.sizedBoxHeightSafeAreaBottom(context),
             ],
           ).paddingSymmetric(
             horizontal: AppDimens.defaultPadding,

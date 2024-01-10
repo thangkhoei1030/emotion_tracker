@@ -59,6 +59,16 @@ class PageRoutes {
       name: AppRoutes.profileEdit,
       page: () => const ProfileEditPage(),
     ),
+    GetPage(
+      name: AppRoutes.changePassword,
+      page: () => const ChangePasswordPage(),
+      binding: ChangePasswordControllerBinding(),
+    ),
+    GetPage(
+      name: AppRoutes.changeInfoAccount,
+      page: () => const ChangeInfoAccountPage(),
+      binding: ChangeInfoAccountControllerBinding(),
+    ),
   ];
 }
 

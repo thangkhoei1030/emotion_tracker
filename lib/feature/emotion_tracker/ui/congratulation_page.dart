@@ -26,6 +26,7 @@ class CongratulationsPage extends BaseGetWidget<CongratulationController> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            UtilWidget.sizedBoxHeightSafeAreaTop(context),
             Column(
               children: const [
                 TextBuild(
@@ -62,7 +63,8 @@ class CongratulationsPage extends BaseGetWidget<CongratulationController> {
                 Get.until((route) => Get.currentRoute == AppRoutes.homePage);
               },
               titleButton: 'Thoát',
-            )
+            ),
+            UtilWidget.sizedBoxHeightSafeAreaBottom(context),
           ],
         ),
       ),

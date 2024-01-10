@@ -15,49 +15,37 @@ class ProfileEditControllerImp extends ProfileEditController {
   Future<void> pickImage(ImageSource source) async {
     Get.close(1);
     await imagePicker.pickImage(source: source).then((value) async {
-      image.value = value;
+      _updateAvatar(value);
     });
   }
 
-  Future<void> _changePassword() async {
-    final ChangePasswordRequest changePasswordRequest = ChangePasswordRequest(
-      newPassword: newPassCtr.text,
-      oldPassword: oldPassCtr.text,
-      rePassword: confirmNewPassCtr.text,
-    );
-    await profileEditRepository.changePassword(changePasswordRequest);
-  }
-
-  Future<void> _updateAvatar() async {
-    if (image.value != null) {
-      await profileEditRepository.updateAvatar(xfile: image.value);
-    }
-  }
-
-  Future<void> _saveChangePasswordAndAvatar() async {
-    if (formKey.currentState?.validate() ?? false) {
-      await _changePassword();
-      await _updateAvatar();
-      showToast(ProfileEditStr.changeInfoSuccess,
-          toastStatus: ToastStatus.success);
-      Get.offAllNamed(AppRoutes.loginPage);
-    }
-  }
-
-  @override
-  Future<void> saveChange() async {
+  Future<void> _updateAvatar(XFile? file) async {
     try {
       showLoadingOverlay();
-      if (isChangePassword.isTrue) {
-        await _saveChangePasswordAndAvatar();
-      } else {
-        await _updateAvatar();
-        showToast(ProfileEditStr.changeInfoSuccess,
-            toastStatus: ToastStatus.success);
-        Get.back(result: true);
+      if (file != null) {
+        await profileEditRepository.updateAvatar(xfile: file).then((value) {
+          homeController.updateUser();
+          showToast(ProfileEditStr.changeInfoSuccess,
+              toastStatus: ToastStatus.success);
+        });
       }
     } finally {
       hideLoadingOverlay();
     }
+  }
+
+  // Future<void> _saveChangePasswordAndAvatar() async {
+  //   if (formKey.currentState?.validate() ?? false) {
+  //     await _updateAvatar();
+
+  //     Get.offAllNamed(AppRoutes.loginPage);
+  //   }
+  // }
+
+  @override
+  Future<void> logOut() async {
+    APP_DATA.delete(AppConst.keyUserName);
+    APP_DATA.delete(AppConst.keyUserpassword);
+    Get.offAllNamed(AppRoutes.loginPage);
   }
 }

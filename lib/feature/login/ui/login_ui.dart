@@ -12,6 +12,7 @@ class LoginPage extends BaseGetWidget<LoginController> {
   Widget buildWidgets(BuildContext context) {
     final keyboardHeight = MediaQuery.of(context).viewInsets.bottom;
     return PageScaffold(
+      resizeToAvoidBottomInset: false,
       showAppBar: false,
       child: Stack(
         children: [
@@ -19,7 +20,8 @@ class LoginPage extends BaseGetWidget<LoginController> {
             animation: controller.stackPositionedIcon,
             builder: (context, child) => Positioned.fill(
               top: controller.stackPositionedIcon.value -
-                  MediaQuery.of(context).viewInsets.bottom / 3,
+                  MediaQuery.of(context).viewInsets.bottom / 3 +
+                  MediaQuery.of(context).padding.top,
               right: 0,
               left: 0,
               child: AlignTransition(

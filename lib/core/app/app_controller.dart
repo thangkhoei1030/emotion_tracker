@@ -1,6 +1,8 @@
+import 'package:device_preview/device_preview.dart';
 import 'package:emotion_tracker/core/src_core.dart';
 import 'package:emotion_tracker/main.dart';
 import 'package:emotion_tracker/pages/src_pages.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:get/get.dart';
@@ -58,6 +60,7 @@ class AppController extends GetxController {
       });
     } catch (e) {
       FlutterNativeSplash.remove();
+
       Get.toNamed(AppRoutes.loginPage);
     }
   }

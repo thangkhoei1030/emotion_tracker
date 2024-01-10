@@ -63,7 +63,6 @@ class FormSignInWidget extends GetView<LoginController> {
                     fillColor: Colors.white,
                     enable: !controller.isShowLoading.value,
                     controller: controller.passwordController,
-                    // labelText: SignInStr.password,
                     validator: (value) => validateInput(
                         nameField: SignInStr.password, value: value),
                     obscureText: true,
@@ -97,6 +96,7 @@ class FormSignInWidget extends GetView<LoginController> {
                 ),
               ),
               UtilWidget.sizedBoxPaddingHuge,
+              UtilWidget.sizedBoxHeightSafeAreaBottom(context),
             ],
           ).paddingSymmetric(horizontal: AppDimens.defaultPadding),
         ),

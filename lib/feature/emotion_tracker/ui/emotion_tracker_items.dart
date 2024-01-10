@@ -28,6 +28,7 @@ class EmotionTrackerItemBuilder extends GetView<EmotionTrackerController> {
       color: pageColor,
       child: Column(
         children: [
+          UtilWidget.sizedBoxHeightSafeAreaTop(context),
           Expanded(
             child: SingleChildScrollView(
               child: Column(
@@ -94,6 +95,7 @@ class EmotionTrackerItemBuilder extends GetView<EmotionTrackerController> {
                 HSLColor.fromColor(pageColor).withLightness(0.4).toColor(),
             titleButton: titleButton,
           ),
+          UtilWidget.sizedBoxHeightSafeAreaBottom(context),
         ],
       ).paddingSymmetric(
         horizontal: AppDimens.defaultPadding,

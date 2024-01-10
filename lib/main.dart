@@ -22,7 +22,23 @@ void main() async {
   }
 
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
+
   runApp(const MyApp());
+
+  // runApp(
+  //   MediaQuery(
+  //     data: const MediaQueryData(),
+  //     child: Builder(
+  //       builder: (context) => DevicePreview(
+  //         enabled: kDebugMode,
+  //         builder: (context) {
+  //           return const MyApp();
+  //         }, // Wrap your app
+  //       ),
+  //     ),
+  //   ),
+  // );
+
   applicationPath =
       (await path_provider.getApplicationDocumentsDirectory()).path;
   // await DefaultFirebaseOptions.initializeFirebase();
@@ -31,8 +47,6 @@ void main() async {
 
   // await myTrace.start();
 
-  Get.put(AppController(), permanent: true);
-
   // await myTrace.stop();
 
   SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersive,
@@ -40,19 +54,6 @@ void main() async {
 
   // await FirebaseAnalyticsSetup.writeLogErrorResponse(error: "ERRORRRRR");
   // /TODO: Chỉ sử dụng khi muốn test nhiều màn hình
-  runApp(
-    MediaQuery(
-      data: const MediaQueryData(),
-      child: Builder(
-        builder: (context) => DevicePreview(
-          enabled: kDebugMode,
-          builder: (context) {
-            return const MyApp();
-          }, // Wrap your app
-        ),
-      ),
-    ),
-  );
 
   //TODO:Logging Sentry
   // runZonedGuarded(
@@ -128,25 +129,24 @@ class _MyAppState extends State<MyApp> {
           debugShowCheckedModeBanner: false,
           initialRoute: AppRoutes.splashPage,
           getPages: PageRoutes.pageRoutes,
-          builder: DevicePreview.appBuilder,
+          // builder: DevicePreview.appBuilder,
           useInheritedMediaQuery: false,
-          // builder: (context, child) => ScrollConfiguration(
-          //   behavior: MyBehavior(),
-          //   child: MediaQuery(
-          //     data:
-          //         MediaQuery.of(context).copyWith(alwaysUse24HourFormat: true),
-          //     child: GestureDetector(
-          //         onTap: () {
-          //           FocusManager.instance.primaryFocus?.unfocus();
-          //         },
-          //         child: child ?? Container()),
-          //   ),
-          // ),
+          builder: (context, child) => ScrollConfiguration(
+            behavior: MyBehavior(),
+            child: MediaQuery(
+              data:
+                  MediaQuery.of(context).copyWith(alwaysUse24HourFormat: true),
+              child: GestureDetector(
+                  onTap: () {
+                    FocusManager.instance.primaryFocus?.unfocus();
+                  },
+                  child: child ?? Container()),
+            ),
+          ),
           title: AppStr.appName,
           theme: AppTheme().getThemeByAppTheme(),
           navigatorObservers: [
             NavigatorObservers(),
-            // SentryNavigatorObserver(),
           ],
         ),
       ),
