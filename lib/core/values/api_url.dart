@@ -14,4 +14,6 @@ class ApiUrl {
   static const String changePassword = "api/member/change-password";
 
   static const String updateAvatar = "api/member/update-avatar";
+
+  static const String updateProfile = "api/member/update-profile";
 }

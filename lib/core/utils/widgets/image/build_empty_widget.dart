@@ -21,7 +21,7 @@ class BuildImageLoadError extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: widthImage ?? double.infinity,
+      width: widthImage,
       child: Image.asset(
         ImageAsset.appImages,
         fit: BoxFit.cover,

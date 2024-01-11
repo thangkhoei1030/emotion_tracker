@@ -25,7 +25,8 @@ class FormComponent extends GetView<ChangePasswordController> {
               },
               fillColor: Colors.transparent,
               obscureText: true,
-              validator: (value) => passwordValidate(password: value ?? ""),
+              validator: (value) =>
+                  validateInput(value: value, nameField: "Mật khẩu cũ"),
             ),
           ),
           UtilWidget.sizedBoxPadding,

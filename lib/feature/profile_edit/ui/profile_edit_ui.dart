@@ -60,11 +60,8 @@ class ProfileEditPage extends BaseGetWidget<ProfileEditController> {
                                   title: EmotionStatisticalStr.title,
                                   textColor: Colors.white,
                                 ),
-                                NetworkImageWidget(
-                                  widthImage: 50,
-                                  urlImage: controller.homeController
-                                          .userInfoResponse.value.avatar ??
-                                      "",
+                                const SizedBox(
+                                  width: 50,
                                 )
                               ],
                             ).paddingSymmetric(

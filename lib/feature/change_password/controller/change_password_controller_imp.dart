@@ -16,10 +16,11 @@ class ChangePasswordControllerImp extends ChangePasswordController {
         isInputFieldComplete.isTrue) {
       try {
         showLoadingOverlay();
-        await _changePassword();
-        showToast(ProfileEditStr.changeInfoSuccess,
-            toastStatus: ToastStatus.success);
-        Get.offAllNamed(AppRoutes.loginPage);
+        await _changePassword().then((value) {
+          showToast(ProfileEditStr.changeInfoSuccess,
+              toastStatus: ToastStatus.success);
+          Get.offAllNamed(AppRoutes.loginPage);
+        });
       } finally {
         hideLoadingOverlay();
       }

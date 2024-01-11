@@ -15,6 +15,31 @@ String? passwordValidate({
   return 'Enter valid password';
 }
 
+String? emailValidate(String? email) {
+  if (email.isStringNotEmpty) {
+    final bool emailValid = RegExp(
+            r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+        .hasMatch(email!);
+    if (!emailValid) {
+      return "Email không hợp lệ";
+    }
+    return null;
+  }
+  return null;
+}
+
+String? phoneValidate(String? phone) {
+  if (phone.isStringNotEmpty) {
+    final bool phoneValid =
+        RegExp(r"^(?:[+0]9)?[0-9]{10,11}$").hasMatch(phone!);
+    if (!phoneValid) {
+      return "Số điện thoại không hợp lệ";
+    }
+    return null;
+  }
+  return null;
+}
+
 String? validateInput({String? value, required String nameField}) {
   if (value.isStringNotEmpty) {
     return null;

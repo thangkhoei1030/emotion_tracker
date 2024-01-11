@@ -58,7 +58,7 @@ class LoginControllerImp extends LoginController with AnimationLogin {
   }
 
   Future<void> _gotoHomePage() async {
-    Get.offAndToNamed(AppRoutes.homePage);
+    Get.offAllNamed(AppRoutes.homePage);
   }
 
   // Future<SignInResponseNotActive?> _requestApi() async {

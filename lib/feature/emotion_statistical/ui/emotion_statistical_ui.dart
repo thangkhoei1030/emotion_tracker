@@ -1,5 +1,4 @@
 import 'package:emotion_tracker/core/src_core.dart';
-import 'package:emotion_tracker/feature/emotion_statistical/values/strings.dart';
 import 'package:emotion_tracker/feature/src_feature.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -18,6 +17,7 @@ class EmotionStatisticalPage
       controller,
       isHaveData: () => controller.emotionStatisticalResponse.isNotEmpty,
       onReload: controller.onReloadErrorOccured,
+      isShowAppBar: true,
       child: PageScaffold(
         showAppBar: false,
         backgroundColor: Colors.transparent,

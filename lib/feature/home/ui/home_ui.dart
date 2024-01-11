@@ -9,13 +9,13 @@ class HomePage extends BaseGetWidget<HomeController> {
   HomeController get controller => Get.put(HomeControllerImp());
   @override
   Widget buildWidgets(BuildContext context) {
-    return PageScaffold(
-      showAppBar: false,
-      child: UtilWidget.buildErrorOccurred(
-        controller,
-        onReload: controller.onReloadErrorOccured,
-        isHaveData: () =>
-            controller.userInfoResponse.value != UserInfoResponse(),
+    return UtilWidget.buildErrorOccurred(
+      controller,
+      isShowAppBar: true,
+      onReload: controller.onReloadErrorOccured,
+      isHaveData: () => controller.userInfoResponse.value != UserInfoResponse(),
+      child: PageScaffold(
+        showAppBar: false,
         child: Obx(
           () => controller.isShowLoading.value
               ? const LoadingAnimationLottie(

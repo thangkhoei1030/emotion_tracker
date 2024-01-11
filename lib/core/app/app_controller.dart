@@ -33,7 +33,7 @@ class AppController extends GetxController {
         await _login();
       } else {
         FlutterNativeSplash.remove();
-        Get.toNamed(AppRoutes.loginPage);
+        Get.offAllNamed(AppRoutes.loginPage);
       }
     });
 
@@ -61,12 +61,12 @@ class AppController extends GetxController {
     } catch (e) {
       FlutterNativeSplash.remove();
 
-      Get.toNamed(AppRoutes.loginPage);
+      Get.offAllNamed(AppRoutes.loginPage);
     }
   }
 
   Future<void> _loginSuccess() async {
-    Get.toNamed(AppRoutes.homePage);
+    Get.offAllNamed(AppRoutes.homePage);
   }
 
   Future<void> _initHive() async {

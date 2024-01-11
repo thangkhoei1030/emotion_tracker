@@ -11,10 +11,33 @@ class ChangeInfoAccountControllerImp extends ChangeInfoAccountController {
   }
 
   void initController() {
+    changeInfoAccountRepository = ChangeInfoAccountRepository(this);
     fullNameCtr.text = homeController.userInfoResponse.value.fullName ?? "";
     classCtr.text =
         homeController.userInfoResponse.value.classId?.toString() ?? "";
     emailCtr.text = homeController.userInfoResponse.value.email ?? "";
     phoneCtr.text = homeController.userInfoResponse.value.phone ?? "";
+  }
+
+  @override
+  void updateInfo() async {
+    if (formState.currentState?.validate() ?? false) {
+      updateProfileRequest = updateProfileRequest.copyWith(
+        fullName: fullNameCtr.text,
+        email: emailCtr.text,
+        phone: phoneCtr.text,
+      );
+      try {
+        showLoadingOverlay();
+        await changeInfoAccountRepository
+            .updateProfile(updateProfileRequest)
+            .then((value) {
+          showToast(value.message ?? "", toastStatus: ToastStatus.success);
+          Get.back(result: true);
+        });
+      } finally {
+        hideLoadingOverlay();
+      }
+    }
   }
 }
