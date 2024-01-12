@@ -86,8 +86,8 @@ class ProfileEditPage extends BaseGetWidget<ProfileEditController> {
                   ),
                 ),
                 BaseButton(
-                  function: () {},
-                  titleButton: "titleButton",
+                  function: controller.logOut,
+                  titleButton: ProfileEditStr.logOut,
                 ).paddingSymmetric(
                   vertical: AppDimens.defaultPadding,
                 ),

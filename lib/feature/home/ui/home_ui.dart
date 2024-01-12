@@ -11,9 +11,11 @@ class HomePage extends BaseGetWidget<HomeController> {
   Widget buildWidgets(BuildContext context) {
     return UtilWidget.buildErrorOccurred(
       controller,
-      isShowAppBar: true,
+      isShowAppBar: false,
       onReload: controller.onReloadErrorOccured,
-      isHaveData: () => controller.userInfoResponse.value != UserInfoResponse(),
+      isHaveData: () {
+        return controller.userInfoResponse.value != UserInfoResponse();
+      },
       child: PageScaffold(
         showAppBar: false,
         child: Obx(

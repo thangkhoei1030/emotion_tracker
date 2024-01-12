@@ -17,4 +17,5 @@ class ProfileEditStr {
   static const String password = "Mật khẩu";
   static const String infoAccount = "Thông tin tài khoản";
   static const String accountManage = "Quản lý tài khoản";
+  static const String logOut = "Đăng xuất";
 }

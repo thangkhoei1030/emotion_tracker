@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:emotion_tracker/core/src_core.dart';
 
 class BuildImageLoadError extends StatelessWidget {

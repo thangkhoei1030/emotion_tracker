@@ -1,3 +1,5 @@
+import 'package:flutter/foundation.dart';
+
 import 'package:emotion_tracker/feature/src_feature.dart';
 
 class UserInfoResponse {
@@ -255,5 +257,92 @@ class UserInfoResponse {
   @override
   String toString() {
     return "$id, $customerId, $code, $fullName, $email, $phone, $birthday, $avatar, $sex, $note, $nation, $jobPosition, $positionGroup, $contract, $level, $subject, $identificationNumber, $classId, $staffName, $status, $created, $updated, $addressId, $addressName, $address, $fullAddress, $countryId, $cityId, $districtId, $wardId, $countryName, $cityName, $districtName, $wardName, $zipCode, $addresses, $bank, $nationName, ";
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+
+    return other is UserInfoResponse &&
+        other.id == id &&
+        other.customerId == customerId &&
+        other.code == code &&
+        other.fullName == fullName &&
+        other.email == email &&
+        other.phone == phone &&
+        other.birthday == birthday &&
+        other.avatar == avatar &&
+        other.sex == sex &&
+        other.note == note &&
+        other.nation == nation &&
+        other.jobPosition == jobPosition &&
+        other.positionGroup == positionGroup &&
+        other.contract == contract &&
+        other.level == level &&
+        other.subject == subject &&
+        other.identificationNumber == identificationNumber &&
+        other.classId == classId &&
+        other.staffName == staffName &&
+        other.status == status &&
+        other.created == created &&
+        other.updated == updated &&
+        other.addressId == addressId &&
+        other.addressName == addressName &&
+        other.address == address &&
+        other.fullAddress == fullAddress &&
+        other.countryId == countryId &&
+        other.cityId == cityId &&
+        other.districtId == districtId &&
+        other.wardId == wardId &&
+        other.countryName == countryName &&
+        other.cityName == cityName &&
+        other.districtName == districtName &&
+        other.wardName == wardName &&
+        other.zipCode == zipCode &&
+        listEquals(other.addresses, addresses) &&
+        listEquals(other.bank, bank) &&
+        other.nationName == nationName;
+  }
+
+  @override
+  int get hashCode {
+    return id.hashCode ^
+        customerId.hashCode ^
+        code.hashCode ^
+        fullName.hashCode ^
+        email.hashCode ^
+        phone.hashCode ^
+        birthday.hashCode ^
+        avatar.hashCode ^
+        sex.hashCode ^
+        note.hashCode ^
+        nation.hashCode ^
+        jobPosition.hashCode ^
+        positionGroup.hashCode ^
+        contract.hashCode ^
+        level.hashCode ^
+        subject.hashCode ^
+        identificationNumber.hashCode ^
+        classId.hashCode ^
+        staffName.hashCode ^
+        status.hashCode ^
+        created.hashCode ^
+        updated.hashCode ^
+        addressId.hashCode ^
+        addressName.hashCode ^
+        address.hashCode ^
+        fullAddress.hashCode ^
+        countryId.hashCode ^
+        cityId.hashCode ^
+        districtId.hashCode ^
+        wardId.hashCode ^
+        countryName.hashCode ^
+        cityName.hashCode ^
+        districtName.hashCode ^
+        wardName.hashCode ^
+        zipCode.hashCode ^
+        addresses.hashCode ^
+        bank.hashCode ^
+        nationName.hashCode;
   }
 }

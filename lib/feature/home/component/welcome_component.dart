@@ -23,36 +23,40 @@ class WelcomeComponent extends GetView<HomeController> {
               ),
               Obx(
                 () => NetworkImageWidget(
-                  widgetProcessCallBack: (context, url, progress) {
-                    return Container(
-                      color: Colors.transparent,
-                      height: 50,
-                      width: 50,
-                      child: Center(
-                          child: LoadingAnimationWidget.bouncingBall(
-                        color: Colors.red,
-                        size: 20,
-                      )),
-                    );
-                  },
-                  widgetImageBuilder: (context, imageProvider) {
-                    return CardBuilder(
-                      backgroundColor: Colors.transparent,
-                      height: 50,
-                      width: 50,
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(100),
-                        child: Container(
-                          decoration: BoxDecoration(
-                            image: DecorationImage(
-                              image: imageProvider,
-                              fit: BoxFit.cover,
-                            ),
-                          ),
-                        ),
-                      ),
-                    );
-                  },
+                  heightImage: 50,
+                  widthImage: 50,
+                  fit: BoxFit.cover,
+                  radiusImage: const RadiusModel(radiusAll: 100),
+                  // widgetProcessCallBack: (context, url, progress) {
+                  //   return Container(
+                  //     color: Colors.transparent,
+                  //     height: 50,
+                  //     width: 50,
+                  //     child: Center(
+                  //         child: LoadingAnimationWidget.bouncingBall(
+                  //       color: Colors.red,
+                  //       size: 20,
+                  //     )),
+                  //   );
+                  // },
+                  // widgetImageBuilder: (context, imageProvider) {
+                  //   return CardBuilder(
+                  //     backgroundColor: Colors.transparent,
+                  //     height: 50,
+                  //     width: 50,
+                  //     child: ClipRRect(
+                  //       borderRadius: BorderRadius.circular(100),
+                  //       child: Container(
+                  //         decoration: BoxDecoration(
+                  //           image: DecorationImage(
+                  //             image: imageProvider,
+                  //             fit: BoxFit.cover,
+                  //           ),
+                  //         ),
+                  //       ),
+                  //     ),
+                  //   );
+                  // },
                   onPressed: () {
                     Get.toNamed(AppRoutes.profileEdit)?.then((value) {
                       if (value != null) {
@@ -68,7 +72,7 @@ class WelcomeComponent extends GetView<HomeController> {
         ),
         UtilWidget.sizedBoxPaddingHuge,
         const TextBuild(
-          title: "Chào bạn!\nChúc một ngày mới tốt lành",
+          title: HomeStr.welcome,
           isBoldText: true,
           textAlign: TextAlign.start,
           fontSize: 24,

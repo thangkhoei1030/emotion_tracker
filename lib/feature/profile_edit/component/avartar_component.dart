@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:emotion_tracker/core/src_core.dart';
 import 'package:emotion_tracker/feature/src_feature.dart';
 import 'package:flutter/material.dart';
@@ -100,9 +98,7 @@ class AvatarComponent extends GetView<ProfileEditController> {
             ),
           );
         },
-        urlImage: controller.userInfoResponse.value.avatar != null
-            ? controller.userInfoResponse.value.avatar.toUrlCDN()
-            : ImageAsset.emptyAccount,
+        urlImage: controller.userInfoResponse.value.avatar.toUrlCDN(),
       ),
     );
   }

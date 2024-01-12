@@ -1,7 +1,6 @@
 import 'dart:io';
 import 'package:device_preview/device_preview.dart';
 import 'package:emotion_tracker/core/src_core.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
