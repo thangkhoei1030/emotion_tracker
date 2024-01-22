@@ -1,6 +1,6 @@
 import 'package:emotion_tracker/core/src_core.dart';
-import 'package:emotion_tracker/feature/emotion_statistical/values/strings.dart';
 import 'package:emotion_tracker/feature/src_feature.dart';
+import 'package:emotion_tracker/pages/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -44,27 +44,32 @@ class BuildAppBarEmotionStatistical
                 title: EmotionStatisticalStr.title,
                 textColor: Colors.white,
               ),
-              NetworkImageWidget(
-                widthImage: 50,
-                widgetImageBuilder: (context, imageProvider) {
-                  return ClipRRect(
-                    borderRadius: BorderRadius.circular(100),
-                    child: Container(
-                      width: 50,
-                      height: 50,
-                      decoration: BoxDecoration(
-                        image: DecorationImage(
-                          image: imageProvider,
-                          fit: BoxFit.cover,
+              Obx(
+                () => NetworkImageWidget(
+                  onPressed: () {
+                    Get.toNamed(AppRoutes.profileEdit);
+                  },
+                  widthImage: 50,
+                  widgetImageBuilder: (context, imageProvider) {
+                    return ClipRRect(
+                      borderRadius: BorderRadius.circular(100),
+                      child: Container(
+                        width: 50,
+                        height: 50,
+                        decoration: BoxDecoration(
+                          image: DecorationImage(
+                            image: imageProvider,
+                            fit: BoxFit.cover,
+                          ),
                         ),
                       ),
-                    ),
-                  );
-                },
-                urlImage:
-                    (controller.homeController.userInfoResponse.value.avatar ??
-                            "")
-                        .toUrlCDN(),
+                    );
+                  },
+                  urlImage: (controller
+                              .homeController.userInfoResponse.value.avatar ??
+                          "")
+                      .toUrlCDN(),
+                ),
               ),
             ],
           ).paddingSymmetric(horizontal: AppDimens.paddingSmall),

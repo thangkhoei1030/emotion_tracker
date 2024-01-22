@@ -11,4 +11,6 @@ abstract class EmotionStatisticalController extends BaseGetxController {
 
   final RxList<EmotionStatisticalResponse> emotionStatisticalResponse =
       RxList.empty();
+  
+  final RxInt currentDaySelect = 0.obs;
 }

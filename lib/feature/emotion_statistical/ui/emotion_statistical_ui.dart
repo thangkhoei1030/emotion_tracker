@@ -79,14 +79,14 @@ class EmotionStatisticalPage
                               const EmotionOfDay(),
                               UtilWidget.sizedBoxPaddingHuge,
                               Column(
-                                children: const [
-                                  EmotionStatistical(),
+                                children: [
+                                  const EmotionStatistical(),
                                   UtilWidget.sizedBoxPaddingHuge,
-                                  MusicRecommended(),
-                                  UtilWidget.sizedBoxPaddingHuge,
-                                  MusicRecommended(),
-                                  UtilWidget.sizedBoxPaddingHuge,
-                                  MusicRecommended(),
+                                  MusicRecommended(
+                                    emotionStatisticalResponse:
+                                        controller.emotionStatisticalResponse[
+                                            controller.currentDaySelect.value],
+                                  ),
                                 ],
                               ).paddingSymmetric(
                                   horizontal: AppDimens.paddingHuge),

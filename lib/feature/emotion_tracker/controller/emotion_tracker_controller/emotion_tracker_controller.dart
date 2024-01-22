@@ -30,13 +30,17 @@ abstract class EmotionTrackerController extends BaseGetxController {
           .length ==
       totalQuestion.value;
 
-  bool get isLastQuestion =>
+  bool get haveOnceQuestionNotDone =>
       quizResponse.quizsDetail
-              .where((element) => element.answer == null)
-              .length ==
-          1 ||
+          .where((element) => element.answer == null)
+          .length ==
+      1;
+
+  bool get isLastQuestion =>
+      haveOnceQuestionNotDone ||
       (numberQuestionAnswer == totalQuestion.value &&
           currentQuestionIndex.value == totalQuestion.value - 1);
+
   int get numberQuestionAnswer => quizResponse.quizsDetail
       .where((element) => element.answer != null)
       .length;

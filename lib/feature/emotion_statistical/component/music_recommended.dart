@@ -1,74 +1,44 @@
 import 'package:emotion_tracker/core/src_core.dart';
+import 'package:emotion_tracker/feature/src_feature.dart';
 import 'package:flutter/material.dart';
 
 class MusicRecommended extends StatelessWidget {
-  const MusicRecommended({super.key});
+  const MusicRecommended({super.key, required this.emotionStatisticalResponse});
+
+  final EmotionStatisticalResponse emotionStatisticalResponse;
 
   @override
   Widget build(BuildContext context) {
-    return CardBuilder(
-      radiusModel: const RadiusModel(
-        radiusAll: AppDimens.radius20,
-      ),
-      paddingModel: const PaddingModel(
-        paddingHorizontal: AppDimens.defaultPadding,
-        paddingVerical: AppDimens.paddingSmall,
-      ),
-      backgroundColor: Colors.lightBlueAccent.withOpacity(0.1),
-      child: IntrinsicHeight(
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Column(
+    return emotionStatisticalResponse.description == null &&
+            emotionStatisticalResponse.title == null
+        ? const SizedBox.shrink()
+        : CardBuilder(
+            radiusModel: const RadiusModel(
+              radiusAll: AppDimens.radius20,
+            ),
+            paddingModel: const PaddingModel(
+              paddingHorizontal: AppDimens.defaultPadding,
+              paddingVerical: AppDimens.paddingSmall,
+            ),
+            backgroundColor: Colors.lightBlueAccent.withOpacity(0.1),
+            child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const TextBuild(
-                  title: "On my mind",
+                TextBuild(
+                  title: emotionStatisticalResponse.title ?? "",
                   textColor: Colors.blue,
+                  textAlign: TextAlign.start,
                   fontSize: AppDimens.sizeTextLarge,
                   isBoldText: true,
                 ),
                 UtilWidget.sizedBoxPadding,
-                Row(
-                  children: const [
-                    CardBuilder(
-                      paddingModel: PaddingModel(
-                        paddingVerical: AppDimens.paddingVerySmallest,
-                        paddingHorizontal: AppDimens.paddingSmall,
-                      ),
-                      radiusModel: RadiusModel(
-                        radiusAll: AppDimens.radius8,
-                      ),
-                      child: TextBuild(
-                        title: "4 phut",
-                        textColor: Colors.blue,
-                      ),
-                    ),
-                    UtilWidget.sizedBoxWidthPadding,
-                    CardBuilder(
-                      paddingModel: PaddingModel(
-                        paddingVerical: AppDimens.paddingVerySmallest,
-                        paddingHorizontal: AppDimens.paddingSmall,
-                      ),
-                      radiusModel: RadiusModel(
-                        radiusAll: AppDimens.radius8,
-                      ),
-                      child: TextBuild(
-                        title: "4 phut",
-                        textColor: Colors.blue,
-                      ),
-                    )
-                  ],
-                )
+                TextBuild(
+                  title: emotionStatisticalResponse.description ?? "",
+                  textColor: Colors.blue,
+                  textAlign: TextAlign.start,
+                ),
               ],
             ),
-            AnimationDialog(
-              height: 75,
-              animationDialogType: AnimationDialogType.listenMusic,
-            )
-          ],
-        ),
-      ),
-    );
+          );
   }
 }

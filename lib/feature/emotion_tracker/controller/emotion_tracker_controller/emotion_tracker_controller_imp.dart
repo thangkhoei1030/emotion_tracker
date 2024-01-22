@@ -80,9 +80,10 @@ class EmotionTrackerControllerImp extends EmotionTrackerController {
     } finally {
       if (isLastQuestion) {
         Get.toNamed(AppRoutes.congratulationQuiz);
+      } else {
+        _nextPage();
+        _updateEmotionFromNextQuestion();
       }
-      _nextPage();
-      _updateEmotionFromNextQuestion();
     }
   }
 
@@ -96,7 +97,9 @@ class EmotionTrackerControllerImp extends EmotionTrackerController {
         currentQuestionIndex.value++;
       }
     } else {
-      currentQuestionIndex.value = firstQuestionDontAnswer;
+      if (firstQuestionDontAnswer != -1) {
+        currentQuestionIndex.value = firstQuestionDontAnswer;
+      }
     }
   }
 
