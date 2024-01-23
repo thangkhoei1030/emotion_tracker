@@ -37,6 +37,7 @@ class PageRoutes {
     GetPage(
       name: AppRoutes.homePage,
       page: () => const HomePage(),
+      binding: HomeControllerBindings(),
     ),
     GetPage(
       name: AppRoutes.emotionTrackerPage,

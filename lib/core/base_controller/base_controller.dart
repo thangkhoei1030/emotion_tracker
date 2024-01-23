@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:dio/dio.dart';
 import 'package:emotion_tracker/core/src_core.dart';
+import 'package:emotion_tracker/pages/src_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
@@ -18,8 +19,6 @@ class BaseGetxController extends GetxController {
   late DioExceptionListener dioExceptionListener;
 
   BaseRequest baseRequestController = Get.find();
-
-  String errorCode = "error";
 
   ///1 CancelToken để huỷ 1 request.
   ///1 màn hình gắn với 1 controller, 1 controller có nhiều requests khi huỷ 1 màn hình => huỷ toàn bộ requests `INCOMPLETED` tại màn hình đó.
@@ -73,18 +72,23 @@ class BaseGetxController extends GetxController {
   }
 
   Future<void> _setOnErrorFormatter(Object error) async {
+    isError.value = true;
     if (error is FormatException) {
       BaseResponse baseResponse =
           BaseResponse.fromJson(jsonDecode(error.message));
 
-      if (baseResponse.code == errorCode) {
+      if (baseResponse.status != 200) {
+        showToastController(baseResponse);
+        if (baseResponse.status == 403) {
+          Get.offAllNamed(AppRoutes.loginPage);
+        }
+
         // try {
         //   await FirebaseAnalyticsSetup.writeLogErrorResponse(
         //       error: baseResponse.message ?? "");
         // } finally {
         //   Sentry.captureException(error);
         // }
-        showToastController(baseResponse);
       }
     } else if (error is DioException) {
       dioExceptionListener = DioExceptionListener(error);
@@ -99,9 +103,8 @@ class BaseGetxController extends GetxController {
   void showToastController(BaseResponse baseResponse) {
     showToast(
       baseResponse.message ?? "",
-      toastStatus: baseResponse.code == errorCode
-          ? ToastStatus.error
-          : ToastStatus.success,
+      toastStatus:
+          baseResponse.status != 200 ? ToastStatus.error : ToastStatus.success,
       gravity: ToastGravity.BOTTOM,
     );
   }

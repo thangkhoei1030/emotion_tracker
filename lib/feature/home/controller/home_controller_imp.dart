@@ -6,15 +6,14 @@ import 'package:get/get.dart';
 class HomeControllerImp extends HomeController {
   @override
   void onInit() async {
+    super.onInit();
     homeRepository = HomeRepository(this);
     try {
       showLoading();
-      await Future.delayed(const Duration(seconds: 2));
       await _getUserInfo();
     } finally {
       hideLoading();
     }
-    super.onInit();
   }
 
   Future<void> _getUserInfo() async {

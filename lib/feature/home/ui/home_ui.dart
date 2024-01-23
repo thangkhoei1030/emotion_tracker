@@ -6,8 +6,6 @@ import 'package:get/get.dart';
 class HomePage extends BaseGetWidget<HomeController> {
   const HomePage({super.key});
   @override
-  HomeController get controller => Get.put(HomeControllerImp());
-  @override
   Widget buildWidgets(BuildContext context) {
     return UtilWidget.buildErrorOccurred(
       controller,

@@ -63,8 +63,6 @@ class BaseRequest extends GetxService {
     Function(Object error)? functionError,
     bool isImage = false,
   }) async {
-    // final _testRequqest = Sentry.getSpan()?.startChild("api") ??
-    //     Sentry.startTransaction("api Test", "api", bindToScope: true);
     _dio.options = dioOptions ?? buildDefaultOptions();
     dynamic response;
     String url = urlOther ?? (ApiUrl.urlBase + action);
@@ -126,6 +124,7 @@ class BaseRequest extends GetxService {
           cancelToken: cancelToken,
         );
       }
+
       if (response.data is String) {
         throw FormatException(response.data);
       }
@@ -155,7 +154,7 @@ class BaseRequest extends GetxService {
       print(e.toString());
       // _testRequqest.throwab le = e;
       // _testRequqest.status = const SpanStatus.internalError();
-      controller.isError.value = true;
+
       controller.cancelRequest(cancelToken);
       return functionError != null ? functionError(e) : showDialogError(e);
     }
@@ -174,7 +173,6 @@ class BaseRequest extends GetxService {
       isImage: isImage,
     );
     print(authentication);
-    // String authentication = APP_DATA.get(AppConst.keyToken) ?? "";\
     Map<String, dynamic> mapHeader = {
       "Content-Type": isImage ? "multipart/form-data" : "application/json",
       'Authorization': "Bearer $authentication",

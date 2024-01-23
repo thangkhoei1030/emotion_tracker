@@ -26,15 +26,18 @@ class BaseRepository {
     Function(Object error)? functionError,
     bool isImage = false,
   }) {
-    return _baseRequest.sendRequest(action, requestMethod,
-        jsonMap: jsonMap,
-        isDownload: isDownload,
-        urlOther: urlOther,
-        headersUrlOther: headersUrlOther,
-        isQueryParametersPost: isQueryParametersPost,
-        controller: controller,
-        dioOptions: dioOptions,
-        functionError: functionError,
-        isImage: isImage);
+    return _baseRequest.sendRequest(
+      action,
+      requestMethod,
+      jsonMap: jsonMap,
+      isDownload: isDownload,
+      urlOther: urlOther,
+      headersUrlOther: headersUrlOther,
+      isQueryParametersPost: isQueryParametersPost,
+      controller: controller,
+      dioOptions: dioOptions,
+      functionError: functionError,
+      isImage: isImage,
+    );
   }
 }
