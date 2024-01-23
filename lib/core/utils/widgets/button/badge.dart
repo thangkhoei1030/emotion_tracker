@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 
-
 class BadgeWidget extends StatelessWidget {
   const BadgeWidget({super.key, required this.numberCart});
 

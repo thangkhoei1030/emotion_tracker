@@ -3,7 +3,6 @@ import 'dart:convert';
 import 'package:crypto/crypto.dart' as crypto;
 import 'package:emotion_tracker/core/src_core.dart';
 
-
 String formatInvoiceNo(num? number) {
   return formatNumber(number, 7);
 }
@@ -31,7 +30,6 @@ String formatNumber(num? number, int length) {
 String formatHourNo(int number) {
   return formatNumber(number, 2);
 }
-
 
 String twoDigits(int n) {
   if (n >= 10) return '$n';

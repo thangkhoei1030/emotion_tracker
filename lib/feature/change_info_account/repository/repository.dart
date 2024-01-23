@@ -11,7 +11,8 @@ class ChangeInfoAccountRepository extends BaseRepository {
       ApiUrl.updateProfile,
       RequestMethod.POST,
       jsonMap: request.toJson(),
-    );print("object");
+    );
+    print("object");
     return BaseResponse.fromJson(response);
   }
 }

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
- 
+
 class CustomColor extends ThemeExtension<CustomColor> {
   final Color? color1;
   final Color? color2;

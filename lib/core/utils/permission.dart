@@ -5,7 +5,6 @@ import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:emotion_tracker/core/src_core.dart';
 
-
 DateTime? _currentBackPressTime;
 Future<bool> onWillPop() {
   DateTime now = DateTime.now();

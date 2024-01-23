@@ -1,7 +1,6 @@
 import 'package:emotion_tracker/core/src_core.dart';
 import 'package:flutter/material.dart';
 
-
 class ColorLight {
   static Color starUnselectColors = HexColor.fromHex("#D2D2D2")!;
   static Color startColors = HexColor.fromHex("#FF7948")!;

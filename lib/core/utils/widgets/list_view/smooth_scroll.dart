@@ -3,13 +3,15 @@ import 'dart:math';
 
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+
 //Only desktop
 class SmoothScrollBuilder extends StatefulWidget {
   final ScrollController controller;
   final Duration duration;
   final double stepSize;
   final ScrollPhysics? physics;
-  final Widget Function(BuildContext context, ScrollController controller, ScrollPhysics? physics) builder;
+  final Widget Function(BuildContext context, ScrollController controller,
+      ScrollPhysics? physics) builder;
 
   const SmoothScrollBuilder({
     super.key,
@@ -57,12 +59,14 @@ class _SmoothScrollBuilderState extends State<SmoothScrollBuilder> {
       setState(() => physics = desktopPhysics);
     }
     targetOffset += widget.stepSize * event.scrollDelta.dy.sign;
-    targetOffset = clamp(targetOffset, 0, widget.controller.position.maxScrollExtent);
+    targetOffset =
+        clamp(targetOffset, 0, widget.controller.position.maxScrollExtent);
     if (targetOffset == widget.controller.offset) {
       return;
     }
     isScrolling = true;
-    widget.controller.animateTo(targetOffset, duration: widget.duration, curve: Curves.linear);
+    widget.controller.animateTo(targetOffset,
+        duration: widget.duration, curve: Curves.linear);
     isScrollingTimer?.cancel();
     isScrollingTimer = Timer(widget.duration, onScrollEnd);
   }
@@ -76,7 +80,8 @@ class _SmoothScrollBuilderState extends State<SmoothScrollBuilder> {
   @override
   Widget build(BuildContext context) {
     return Listener(
-      onPointerSignal: (event) => event is PointerScrollEvent ? onWheelScroll(event) : null,
+      onPointerSignal: (event) =>
+          event is PointerScrollEvent ? onWheelScroll(event) : null,
       onPointerDown: (_) => onContinuosScroll(),
       child: widget.builder(context, widget.controller, physics),
     );
@@ -118,6 +123,6 @@ class SmoothSingleChildScrollView extends StatelessWidget {
   }
 }
 
-T clamp<T extends num> (T value, T minVal, T maxVal) {
+T clamp<T extends num>(T value, T minVal, T maxVal) {
   return max(min(value, maxVal), minVal);
 }

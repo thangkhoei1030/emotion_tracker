@@ -83,18 +83,17 @@ class ChangePasswordPage extends BaseGetWidget<ChangePasswordController> {
   }
 }
 
-
-        // leading: CardBuilder(
-        //   radiusModel: const RadiusModel(radiusAll: AppDimens.radius8),
-        //   onTap: Get.back,
-        //   paddingModel: const PaddingModel(paddingAll: AppDimens.paddingSmall),
-        //   backgroundColor: HexColor.fromHex("#A0A0A0"),
-        //   child: const Icon(
-        //     Icons.arrow_back,
-        //     color: Colors.black,
-        //   ),
-        // ),
-        // title: const TextBuild(
-        //   title: ChangePasswordStr.changePassword,
-        //   textColor: Colors.black,
-        // ),
+// leading: CardBuilder(
+//   radiusModel: const RadiusModel(radiusAll: AppDimens.radius8),
+//   onTap: Get.back,
+//   paddingModel: const PaddingModel(paddingAll: AppDimens.paddingSmall),
+//   backgroundColor: HexColor.fromHex("#A0A0A0"),
+//   child: const Icon(
+//     Icons.arrow_back,
+//     color: Colors.black,
+//   ),
+// ),
+// title: const TextBuild(
+//   title: ChangePasswordStr.changePassword,
+//   textColor: Colors.black,
+// ),

@@ -8,5 +8,4 @@ abstract class ForgotPasswordController extends BaseGetxController {
   final TextEditingController emailController = TextEditingController();
 
   // ForgotPassword forgotPassRequest = ForgotPassword();
-
 }

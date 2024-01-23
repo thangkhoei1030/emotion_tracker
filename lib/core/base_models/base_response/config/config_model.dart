@@ -1,4 +1,3 @@
-
 // import 'package:emotion_tracker/core/src_core.dart';
 // class ConfigModel {
 //   ConfigModel({

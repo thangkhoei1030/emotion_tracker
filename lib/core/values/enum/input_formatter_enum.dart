@@ -11,10 +11,8 @@ class InputFormatterEnum {
   /// 3 : Không cho nhập các ký tự đặc biệt. dấu cách
   static const textOnly = 3;
 
-
   /// 5 : Cho phép nhập giá trị âm
   static const negativeNumber = 5;
-
 
   /// 7 : Cho phép nhập giá trị căn cước
   static const identity = 7;

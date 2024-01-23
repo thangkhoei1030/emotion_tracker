@@ -11,4 +11,3 @@ export 'validate.dart';
 export 'widgets/loading/src_loading.dart';
 export 'widgets/animation/src_animation.dart';
 export 'singleton/src_singleton.dart';
-

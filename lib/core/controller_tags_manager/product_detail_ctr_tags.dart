@@ -1,4 +1,5 @@
 import 'package:emotion_tracker/core/src_core.dart';
+
 class ProductDetailCtrTags implements TagsManager {
   ProductDetailCtrTags._();
 

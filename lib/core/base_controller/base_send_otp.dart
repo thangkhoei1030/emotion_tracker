@@ -56,6 +56,3 @@
 
 //   Future<void> resendOTP();
 // }
-
-
-                                           

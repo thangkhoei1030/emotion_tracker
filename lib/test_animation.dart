@@ -13,7 +13,7 @@ class TestAnimationClass extends StatefulWidget {
     this.titleLoading = "Description",
   });
 
-  final bool  isLoading;
+  final bool isLoading;
 
   final WidgetAnimationCallBack widgetAnimationCallBack;
 

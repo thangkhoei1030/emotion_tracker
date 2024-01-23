@@ -17,13 +17,14 @@ class ExtendModel {
 
   factory ExtendModel.fromJson(Map<String, dynamic> json) {
     return ExtendModel(
-        page: json["page"] == null ? null : Page.fromJson(json["page"]),
-        cdnUrl: json["cdn_url"],
-        lang: json["lang"],
-        logged: json["logged"],);
-        // pagination: json["pagination"] == null
-        //     ? null
-        //     : Pagination.fromJson(json["pagination"]));
+      page: json["page"] == null ? null : Page.fromJson(json["page"]),
+      cdnUrl: json["cdn_url"],
+      lang: json["lang"],
+      logged: json["logged"],
+    );
+    // pagination: json["pagination"] == null
+    //     ? null
+    //     : Pagination.fromJson(json["pagination"]));
   }
 
   Map<String, dynamic> toJson() => {

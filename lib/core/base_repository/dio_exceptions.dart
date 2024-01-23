@@ -7,7 +7,7 @@ class DioExceptionListener {
   late final String descriptionError;
 
   late final DioException exception;
-  
+
   DioExceptionListener(this.exception);
 
   void setDioExceptionListener() {
