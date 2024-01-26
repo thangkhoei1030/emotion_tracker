@@ -23,7 +23,8 @@ class EmotionStatisticalControllerImp extends EmotionStatisticalController {
       await emotionStatisticalRepository
           .getEmotionStatisticalOfWeek()
           .then((value) {
-        if (value.data.isNotEmpty) {
+        if (value.
+        data.isNotEmpty) {
           emotionStatisticalResponse.value = value.data;
         }
       });

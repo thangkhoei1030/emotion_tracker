@@ -16,13 +16,13 @@ abstract class EmotionTrackerController extends BaseGetxController {
 
   QuizResponse quizResponse = QuizResponse();
 
-  Future<void> sendAnswerToServer(int index);
+  Future<void> sendAnswerToServer();
 
   void emotionChange(double value);
 
   Future<void> getQuiz();
 
-  void nextQuestionOrSumary(int index);
+  void nextQuestionOrSumary();
 
   bool get isFirstQuestion =>
       quizResponse.quizsDetail
@@ -30,14 +30,14 @@ abstract class EmotionTrackerController extends BaseGetxController {
           .length ==
       totalQuestion.value;
 
-  bool get haveOnceQuestionNotDone =>
-      quizResponse.quizsDetail
-          .where((element) => element.answer == null)
-          .length ==
-      1;
+  // bool get haveOnceQuestionNotDone =>
+  //     quizResponse.quizsDetail
+  //         .where((element) => element.answer == null)
+  //         .length ==
+  //     1;
 
   bool get isLastQuestion =>
-      haveOnceQuestionNotDone ||
+      // haveOnceQuestionNotDone ||
       (numberQuestionAnswer == totalQuestion.value &&
           currentQuestionIndex.value == totalQuestion.value - 1);
 

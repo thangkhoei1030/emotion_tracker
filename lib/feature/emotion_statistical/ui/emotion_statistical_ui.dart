@@ -95,32 +95,6 @@ class EmotionStatisticalPage
                           ),
                         ]))
                       ],
-                      // body: SingleChildScrollView(
-                      //   physics: const BouncingScrollPhysics(),
-                      //   child: Column(
-                      //     crossAxisAlignment: CrossAxisAlignment.start,
-                      //     children: [
-                      //       // const BuildAppBarEmotionStatistical(),
-                      //       // UtilWidget.sizedBoxPaddingHuge,
-                      //       UtilWidget.sizedBoxPaddingHuge,
-                      //       UtilWidget.sizedBoxPaddingHuge,
-                      //       const EmotionOfDay(),
-                      //       UtilWidget.sizedBoxPaddingHuge,
-                      //       Column(
-                      //         children: const [
-                      //           EmotionStatistical(),
-                      //           UtilWidget.sizedBoxPaddingHuge,
-                      //           MusicRecommended(),
-                      //           UtilWidget.sizedBoxPaddingHuge,
-                      //           MusicRecommended(),
-                      //           UtilWidget.sizedBoxPaddingHuge,
-                      //           MusicRecommended(),
-                      //         ],
-                      //       ).paddingSymmetric(
-                      //           horizontal: AppDimens.paddingHuge),
-                      //     ],
-                      //   ),
-                      // ),
                     )
                   ],
                 ),

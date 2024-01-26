@@ -46,18 +46,20 @@ class EmotionTrackerControllerImp extends EmotionTrackerController {
   }
 
   @override
-  Future<void> sendAnswerToServer(int index) async {
-    var questionForAnswer = quizResponse.quizsDetail[index];
+  Future<void> sendAnswerToServer() async {
+    var questionForAnswer =
+        quizResponse.quizsDetail[currentQuestionIndex.value];
 
-    var _oldEmotion = currentEmotion.value.ceil() + 1;
+    var oldEmotion = currentEmotion.value.ceil() + 1;
 
     AnswerRequest answerRequest = AnswerRequest(
-      answer: _oldEmotion,
+      answer: oldEmotion,
       questionId: questionForAnswer.questionId,
       quizId: quizResponse.id,
     );
-    quizResponse.quizsDetail[index] = quizResponse.quizsDetail[index].copyWith(
-      answer: _oldEmotion,
+    quizResponse.quizsDetail[currentQuestionIndex.value] =
+        quizResponse.quizsDetail[currentQuestionIndex.value].copyWith(
+      answer: oldEmotion,
     );
     try {
       await emotionTrackerRepository.sendAnswer(answerRequest).then((value) {
@@ -74,9 +76,9 @@ class EmotionTrackerControllerImp extends EmotionTrackerController {
   }
 
   @override
-  void nextQuestionOrSumary(int index) async {
+  void nextQuestionOrSumary() async {
     try {
-      sendAnswerToServer(index);
+      sendAnswerToServer();
     } finally {
       if (isLastQuestion) {
         Get.toNamed(AppRoutes.congratulationQuiz);

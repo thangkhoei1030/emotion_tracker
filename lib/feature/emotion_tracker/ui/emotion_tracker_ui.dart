@@ -34,11 +34,7 @@ class EmotionTrackerPage extends BaseGetWidget<EmotionTrackerController> {
                   description:
                       "Đang lấy danh sách câu hỏi\n Vui lòng chờ một chút nha",
                 )
-              : Obx(
-                  () => EmotionTrackerItemBuilder(
-                    controller.currentQuestionIndex.value,
-                  ),
-                ),
+              : const EmotionTrackerItemBuilder(),
         ),
       ),
     );
