@@ -15,7 +15,7 @@ class ProfileEditControllerImp extends ProfileEditController {
   Future<void> pickImage(ImageSource source) async {
     Get.close(1);
     await imagePicker.pickImage(source: source).then((value) async {
-      _updateAvatar(value);
+      await _updateAvatar(value);
     });
   }
 

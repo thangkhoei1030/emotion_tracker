@@ -21,14 +21,17 @@ class ProfileEditRepository extends BaseRepository {
     FormData? data;
     if (xfile != null) {
       String fileType = xfile.path.split('.').last;
-      data = FormData.fromMap({
-        "file": await MultipartFile.fromFile(xfile.path,
-            filename: xfile.name,
-            contentType: MediaType(
-              "image",
-              fileType,
-            )),
-      });
+
+      var multiPart = await MultipartFile.fromFile(
+        xfile.path,
+        filename: xfile.name,
+        contentType: MediaType(
+          "image",
+          fileType,
+        ),
+      );
+
+      data = FormData.fromMap({"file": multiPart});
     }
 
     var response = await baseSendRequest(
