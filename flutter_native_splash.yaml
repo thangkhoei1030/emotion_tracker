@@ -23,7 +23,7 @@ flutter_native_splash:
 
   # The image parameter allows you to specify an image used in the splash screen.  It must be a
   # png file and should be sized for 4x pixel density.
-  image: assets/background/splash_light_1.jpg
+  image: assets/img/app_images.png
 
   # The branding property allows you to specify an image used as branding in the splash screen.
   # It must be a png file. It is supported for Android, iOS and the Web.  For Android 12,
@@ -41,7 +41,7 @@ flutter_native_splash:
   # set.
   color_dark: "#ffffff"
   # background_image_dark: assets/background/splash_dark.jpg
-  image_dark: assets/background/splash_dark_1.jpg
+  image_dark: assets/img/app_images.png
   # branding_dark: assets/background/splash.jpg
 
   # Android 12 handles the splash screen differently than previous versions.  Please visit
@@ -55,7 +55,7 @@ flutter_native_splash:
     # 640 pixels in diameter.
     # App icon without an icon background: This should be 1152×1152 pixels, and fit within a circle
     # 768 pixels in diameter.
-    image: assets/background/splash_light_1.jpg
+    image: assets/img/app_images.png
 
     # Splash screen background color.
     color: "#b0cae5"
@@ -69,11 +69,11 @@ flutter_native_splash:
     # The image_dark, color_dark, icon_background_color_dark, and branding_dark set values that
     # apply when the device is in dark mode. If they are not specified, the app will use the
     # parameters from above.
-    image_dark: assets/background/splash_dark_1.jpg
+    image_dark: assets/img/app_images.png
 
     color_dark: "#ffffff"
 
-    fullscreen: true
+    fullscreen: false
     # icon_background_color_dark: "#ffffff"
 
   # The android, ios and web parameters can be used to disable generating a splash screen on a given
@@ -116,7 +116,7 @@ flutter_native_splash:
   # https://developer.android.com/reference/android/view/Gravity): bottom, center,
   # center_horizontal, center_vertical, clip_horizontal, clip_vertical, end, fill, fill_horizontal,
   # fill_vertical, left, right, start, or top.
-  android_gravity: fill
+  # android_gravity: fill
   #
   # ios_content_mode can be one of the following iOS UIView.ContentMode (see
   # https://developer.apple.com/documentation/uikit/uiview/contentmode): scaleToFill,
